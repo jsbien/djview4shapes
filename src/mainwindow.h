@@ -27,6 +27,11 @@ class MainWindow : public QMainWindow
 public:
 	explicit MainWindow(QWidget *parent = 0);
 private slots:
+	/** Open given file. */
+	void openFile(const QString& file);
+	/** Select file to display. */
+	void selectFileToOpen();
+	/** Display information about the program. */
 	void showAboutDialog();
 protected:
 	 /** Confirm quitting. */
@@ -43,6 +48,8 @@ protected:
 
 	 Ui::MainWindow ui;
 	 static const QString m_applicationName;
+
+	 RecentFiles m_recentFiles;
 };
 
 #endif // MAINWINDOW_H

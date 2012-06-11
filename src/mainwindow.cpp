@@ -27,7 +27,12 @@ MainWindow::MainWindow(QWidget *parent) :
 	setWindowTitle(m_applicationName);
 	show();
 	restoreSettings();
+}
 
+void MainWindow::openFile(const QString &file)
+{
+	qDebug() << "Open " << file;
+	m_recentFiles.addFile(file);
 }
 
 void MainWindow::closeEvent(QCloseEvent* event)
@@ -73,12 +78,29 @@ void MainWindow::showAboutDialog()
 
 void MainWindow::setupActions()
 {
+	m_recentFiles.plug(ui.actionFileRecent);
+
+
+	// File menu
+	connect(ui.actionFileOpen, SIGNAL(triggered()), this,
+			  SLOT(selectFileToOpen()));
+	connect(&m_recentFiles, SIGNAL(selected(QString)), this,
+			  SLOT(openFile(QString)));
+
 	// Help menu
 	connect(ui.actionHelpAbout, SIGNAL(triggered()), this,
 			  SLOT(showAboutDialog()));
 }
 
+
+void MainWindow::selectFileToOpen()
+{
+	QString filename = MessageDialog::openFile(tr("DjVu files (*.djvu)"),
+															 tr("Open file"), "open");
+	if (!filename.isEmpty())
+		openFile(filename);
+}
+
+
 const QString MainWindow::m_applicationName = QT_TR_NOOP("DjView Shapes");
-
-
 
