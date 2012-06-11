@@ -33,7 +33,8 @@ HEADERS += recentfiles.h \
 	 messagedialog.h \
 	 version.h \ 
     shapetablewidgetitem.h \
-    shapenode.h
+    shapenode.h \
+    shapeswidget.h
 SOURCES += recentfiles.cpp \
 	 mainwindow.cpp \
 	 qdjvuwidget.cpp \
@@ -43,7 +44,8 @@ SOURCES += recentfiles.cpp \
 	 version.cpp \ 
     main.cpp \
     shapetablewidgetitem.cpp \
-    shapenode.cpp
+    shapenode.cpp \
+    shapeswidget.cpp
 FORMS = mainwindow.ui 
 
 RESOURCES += \
