@@ -52,6 +52,9 @@ void ShapeExtractor::extract(int pageno)
 		return;
 	}
 
+	if (!img->wait_for_complete_decode())
+		qDebug() << "Not decoded";
+
 	GP<JB2Image> jimg = img->get_fgjb();
 	if (!jimg) {
 		qWarning("Cound not get fbjb, page %d", pageno);
