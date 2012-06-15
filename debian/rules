@@ -9,7 +9,7 @@ override_dh_auto_build:
 	
 override_dh_install:
 	@echo "install binary"
-	install -D src/djview4poliqarp $(CURDIR)/debian/djview4poliqarp/usr/bin/djview4poliqarp
+	install -D src/djview-shapes $(CURDIR)/debian/djview4poliqarp/usr/bin/djview-shapes
 	@echo "install djview4 icons"
 	install -D desktopfiles/hi-djview4.svgz  $(iconbasedir)/scalable/apps/$(icon).svgz
 	install -D desktopfiles/hi32-djview4.png $(iconbasedir)/32x32/apps/$(icon).png
