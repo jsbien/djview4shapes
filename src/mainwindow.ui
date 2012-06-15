@@ -20,7 +20,14 @@
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
-      <widget class="ShapesWidget" name="shapeWidget"/>
+      <widget class="ShapesWidget" name="shapeWidget">
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>30</number>
+       </attribute>
+      </widget>
       <widget class="QDjVuWidget" name="djvuWidget" native="true"/>
      </widget>
     </item>

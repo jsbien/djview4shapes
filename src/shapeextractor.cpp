@@ -25,45 +25,43 @@ ShapeExtractor::ShapeExtractor(QObject* parent) : QObject(parent)
 	m_document = 0;
 }
 
-bool ShapeExtractor::open(QDjVuDocument *document)
+void ShapeExtractor::open(QDjVuDocument *document)
 {
 	qDeleteAll(m_shapes);
 	m_shapes.clear();
 	m_document = document;
-	extract(1);
 }
 
-void ShapeExtractor::extract(int pageno)
+bool ShapeExtractor::extract(int pageno)
 {
 	if (!m_document)
-		return;
+		return false;
 
 	struct DJVU::ddjvu_page_s* page = reinterpret_cast<DJVU::ddjvu_page_s *>(
 				ddjvu_page_create_by_pageno(*m_document, pageno));
 
 	if (!page) {
 		qWarning("Cound not render djvupage, page %d", pageno);
-		return;
+		return false;
 	}
 
 	GP<DjVuImage> img = ddjvu_get_DjVuImage(page);
 	if (!img) {
 		qWarning("Cound not render djvuimage, page %d", pageno);
-		return;
+		return false;
 	}
 
 	if (!img->wait_for_complete_decode())
-		qDebug() << "Not decoded";
+		return false;
 
 	GP<JB2Image> jimg = img->get_fgjb();
 	if (!jimg) {
 		qWarning("Cound not get fbjb, page %d", pageno);
-		return;
+		return false;
 	}
 
 	int sh_count = jimg->get_shape_count();
 	int blit_count = jimg->get_blit_count();
-	qDebug() << "Shapes: " << sh_count << "Blits" << blit_count;
 
 //	progress->setMaximum(sh_count + blit_count);
 //	progress->show();
@@ -137,6 +135,17 @@ void ShapeExtractor::extract(int pageno)
 //	progress->hide();
 
 	qDebug("Grabed %d shapes for page %d", sh_count, pageno);
+	return true;
+}
+
+ShapeNode *ShapeExtractor::node(int i) const
+{
+	return m_shapes[i];
+}
+
+int ShapeExtractor::nodeCount()
+{
+	return m_shapes.count();
 }
 
 
