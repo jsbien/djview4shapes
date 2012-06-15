@@ -21,6 +21,9 @@
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent)
 {
+	m_context = new QDjVuContext("djvu-shapes", this);
+	m_document = 0;
+
 	ui.setupUi(this);
 
 	setupActions();
@@ -29,10 +32,16 @@ MainWindow::MainWindow(QWidget *parent) :
 	restoreSettings();
 }
 
-void MainWindow::openFile(const QString &file)
+void MainWindow::openFile(const QString &filename)
 {
-	ui.shapeWidget->open(file);
-	m_recentFiles.addFile(file);
+	if (m_document) {
+		ui.djvuWidget->setDocument(0);
+		ui.shapeWidget->close();
+	}
+	m_document = new QDjVuDocument(this);
+	connect(m_document, SIGNAL(docinfo()), this, SLOT(documentLoaded()));
+	m_document->setFileName(m_context, filename);
+	m_recentFiles.addFile(filename);
 }
 
 void MainWindow::closeEvent(QCloseEvent* event)
@@ -72,7 +81,11 @@ void MainWindow::showAboutDialog()
 	QMessageBox::about(this, tr("About application"), about);
 }
 
-
+void MainWindow::documentLoaded()
+{
+	ui.djvuWidget->setDocument(m_document);
+	ui.shapeWidget->open(m_document);
+}
 
 
 

@@ -22,21 +22,22 @@ GP<DjVuImage> ddjvu_get_DjVuImage(DJVU::ddjvu_page_s *page);
 
 ShapeExtractor::ShapeExtractor(QObject* parent) : QObject(parent)
 {
-	m_document = new QDjVuDocument(this);
-	m_context = new QDjVuContext("djview-shapes");
-
-	connect(m_document, SIGNAL(docinfo()), this, SLOT(documentLoaded()));
+	m_document = 0;
 }
 
-bool ShapeExtractor::open(const QString &filename)
+bool ShapeExtractor::open(QDjVuDocument *document)
 {
 	qDeleteAll(m_shapes);
 	m_shapes.clear();
-	return m_document->setFileName(m_context, filename);
+	m_document = document;
+	extract(1);
 }
 
 void ShapeExtractor::extract(int pageno)
 {
+	if (!m_document)
+		return;
+
 	struct DJVU::ddjvu_page_s* page = reinterpret_cast<DJVU::ddjvu_page_s *>(
 				ddjvu_page_create_by_pageno(*m_document, pageno));
 
@@ -135,10 +136,5 @@ void ShapeExtractor::extract(int pageno)
 	qDebug("Grabed %d shapes for page %d", sh_count, pageno);
 }
 
-void ShapeExtractor::documentLoaded()
-{
-	qDebug() << "Dcoument loaded";
-	extract(1);
-}
 
 

@@ -13,13 +13,11 @@ class ShapeExtractor : public QObject
 	Q_OBJECT
 public:
 	ShapeExtractor(QObject* parent = 0);
-	bool open(const QString& filename);
+	bool open(QDjVuDocument* document);
+	void close() {m_document = 0;}
 	void extract(int page);
-private slots:
-	void documentLoaded();
 private:
 	QDjVuDocument* m_document;
-	QDjVuContext* m_context;
 	QList<ShapeNode*> m_shapes;
 };
 

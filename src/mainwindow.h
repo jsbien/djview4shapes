@@ -33,6 +33,8 @@ private slots:
 	void selectFileToOpen();
 	/** Display information about the program. */
 	void showAboutDialog();
+	/** Document loaded. */
+	void documentLoaded();
 protected:
 	 /** Confirm quitting. */
 	 void closeEvent(QCloseEvent* event);
@@ -50,6 +52,8 @@ protected:
 	 static const QString m_applicationName;
 
 	 RecentFiles m_recentFiles;
+	 QDjVuDocument* m_document;
+	 QDjVuContext* m_context;
 };
 
 #endif // MAINWINDOW_H

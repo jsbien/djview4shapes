@@ -16,7 +16,13 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="ShapesWidget" name="shapeWidget"/>
+     <widget class="QSplitter" name="splitter">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="ShapesWidget" name="shapeWidget"/>
+      <widget class="QDjVuWidget" name="djvuWidget" native="true"/>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -97,6 +103,12 @@
    <class>ShapesWidget</class>
    <extends>QTableWidget</extends>
    <header>shapeswidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QDjVuWidget</class>
+   <extends>QWidget</extends>
+   <header>qdjvuwidget.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

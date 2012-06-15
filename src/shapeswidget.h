@@ -6,16 +6,15 @@
 #define SHAPESWIDGET_H
 
 #include <QtGui>
-
-class ShapeExtractor;
+#include "shapeextractor.h"
 
 class ShapesWidget : public QTableWidget
 {
 	 Q_OBJECT
 public:
 	 explicit ShapesWidget(QWidget* parent = 0);
-public slots:
-	void open(const QString& filename);
+	void open(QDjVuDocument* document);
+	void close();
 private:
 	ShapeExtractor* m_extractor;
 };
