@@ -131,7 +131,7 @@ bool ShapeExtractor::extract(int pageno)
 	};
 //	roots.first = sh_count;
 
-	qSort(m_shapes.begin(), m_shapes.begin(), ShapeNode::greaterThan);
+	qSort(m_shapes.begin(), m_shapes.end(), ShapeNode::greaterThan);
 //	progress->hide();
 
 	qDebug("Grabed %d shapes for page %d", sh_count, pageno);
