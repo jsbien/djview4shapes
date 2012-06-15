@@ -7,11 +7,17 @@
 
 #include <QtGui>
 
+class ShapeExtractor;
+
 class ShapesWidget : public QTableWidget
 {
 	 Q_OBJECT
 public:
 	 explicit ShapesWidget(QWidget* parent = 0);
+public slots:
+	void open(const QString& filename);
+private:
+	ShapeExtractor* m_extractor;
 };
 
 

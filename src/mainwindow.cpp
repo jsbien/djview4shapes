@@ -31,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 void MainWindow::openFile(const QString &file)
 {
-	qDebug() << "Open " << file;
+	ui.shapeWidget->open(file);
 	m_recentFiles.addFile(file);
 }
 

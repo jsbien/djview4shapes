@@ -16,7 +16,7 @@ unix:LIBS = -ldjvulibre
 
 !win32 {
 HGID = $$system(hg id -n)
-DEFINES += HGID=\\\"$$HGID\\\"
+DEFINES += HAVE_CONFIG_H HGID=\\\"$$HGID\\\"
 
 versiontarget.target = version.o
 versiontarget.depends = FORCE
@@ -31,22 +31,25 @@ HEADERS += recentfiles.h \
 	 qdjvuhttp.h \
 	 qdjvu.h \
 	 messagedialog.h \
-	 version.h \ 
-    shapetablewidgetitem.h \
-    shapenode.h \
-    shapeswidget.h
+	 version.h \
+	 shapetablewidgetitem.h \
+	 shapenode.h \
+	 shapeswidget.h \
+	 shapeextractor.h
+
 SOURCES += recentfiles.cpp \
 	 mainwindow.cpp \
 	 qdjvuwidget.cpp \
 	 qdjvuhttp.cpp \
 	 qdjvu.cpp \
 	 messagedialog.cpp \
-	 version.cpp \ 
-    main.cpp \
-    shapetablewidgetitem.cpp \
-    shapenode.cpp \
-    shapeswidget.cpp
-FORMS = mainwindow.ui 
+	 version.cpp \
+	 main.cpp \
+	 shapetablewidgetitem.cpp \
+	 shapenode.cpp \
+	 shapeswidget.cpp \
+	 shapeextractor.cpp
+FORMS = mainwindow.ui
 
 RESOURCES += \
 	 resources.qrc

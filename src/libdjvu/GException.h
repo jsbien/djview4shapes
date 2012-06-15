@@ -282,6 +282,7 @@ public:
 
 // Compiler does not support ANSI C++ exceptions.
 // Emulate with setjmp/longjmp.
+#warning kicha
 
 class DJVUAPI GExceptionHandler {
 public:
