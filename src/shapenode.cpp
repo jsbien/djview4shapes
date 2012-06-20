@@ -16,7 +16,7 @@
 #include "shapenode.h"
 
 ShapeNode::ShapeNode(ShapeNode *parent, int id, QPixmap pixmap) :
-	m_id(id), m_pixmap(pixmap), m_item(0)
+	m_id(id), m_pixmap(pixmap)
 {
 	 setParent(parent);
 }

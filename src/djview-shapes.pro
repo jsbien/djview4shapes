@@ -32,7 +32,6 @@ HEADERS += recentfiles.h \
 	 qdjvu.h \
 	 messagedialog.h \
 	 version.h \
-	 shapetablewidgetitem.h \
 	 shapenode.h \
 	 shapeswidget.h \
 	 shapeextractor.h
@@ -45,7 +44,6 @@ SOURCES += recentfiles.cpp \
 	 messagedialog.cpp \
 	 version.cpp \
 	 main.cpp \
-	 shapetablewidgetitem.cpp \
 	 shapenode.cpp \
 	 shapeswidget.cpp \
 	 shapeextractor.cpp

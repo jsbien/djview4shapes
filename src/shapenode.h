@@ -24,8 +24,8 @@ class ShapeNode
 {
 public:
 	 ShapeNode(ShapeNode *m_parent, int id, QPixmap pixmap);
-	 ShapeNode(int id, QPixmap pixmap) : m_id(id), m_parent(0), m_pixmap(pixmap), m_item(0) {}
-	 ShapeNode(int id) : m_id(id), m_parent(0), m_item(0) {}
+	 ShapeNode(int id, QPixmap pixmap) : m_id(id), m_parent(0), m_pixmap(pixmap) {}
+	 ShapeNode(int id) : m_id(id), m_parent(0) {}
 	 ~ShapeNode();
 
 	 int getId() { return m_id; }
@@ -39,7 +39,6 @@ public:
 	 void addBlit(unsigned short left, unsigned short bottom);
 
 	 void setParent(ShapeNode *m_parent);
-	 void setItem(ShapeTableWidgetItem* item) {m_item = item;}
 
 	 void calculateTreeHeights() { calculateTreeHeights(0); }
 	 int getToRootHeight() { return m_distanceToRoot; }
@@ -50,7 +49,6 @@ private:
 	 int m_id;
 	 ShapeNode *m_parent;
 	 QPixmap m_pixmap;
-	 ShapeTableWidgetItem* m_item;
 	 QList<ShapeNode*> m_children;
 	 QList<QPair<unsigned short, unsigned short> > m_blits;
 	 int m_distanceToRoot;
