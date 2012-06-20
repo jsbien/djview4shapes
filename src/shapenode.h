@@ -31,8 +31,8 @@ public:
 	 int getId() { return m_id; }
 	 QPixmap& getPixmap() { return m_pixmap; }
 
-	 QList<ShapeNode *> getChildren() {return m_children;}
-	 QList<ShapeNode *> getSiblings();
+	 QList<ShapeNode *> children() {return m_children;}
+	 QList<ShapeNode *> siblings();
 	 ShapeNode * getParent() { return m_parent; }
 
 	 QList<QPair<unsigned short, unsigned short> > getBlits() { return m_blits; }
@@ -44,8 +44,6 @@ public:
 	 void calculateTreeHeights() { calculateTreeHeights(0); }
 	 int getToRootHeight() { return m_distanceToRoot; }
 	 int getToLeafHeight() { return m_distanceToLeaf; }
-
-	 QColor color;
 
 	 static bool greaterThan(ShapeNode * n1, ShapeNode *n2);
 private:

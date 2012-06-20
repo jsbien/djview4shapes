@@ -23,10 +23,9 @@ ShapeNode::ShapeNode(ShapeNode *parent, int id, QPixmap pixmap) :
 
 void ShapeNode::setParent(ShapeNode *parent)
 {
-	 this->m_parent = parent;
-
-	 if (parent)
-		  parent->m_children.append(this);
+	m_parent = parent;
+	if (m_parent)
+		m_parent->m_children.append(this);
 }
 
 ShapeNode::~ShapeNode()
@@ -34,15 +33,14 @@ ShapeNode::~ShapeNode()
 	qDeleteAll(m_children);
 }
 
-QList<ShapeNode *> ShapeNode::getSiblings()
+QList<ShapeNode *> ShapeNode::siblings()
 {
-	 if (m_parent == NULL)
-		  return QList<ShapeNode *>();
-	 else {
-		  QList<ShapeNode *> ret = QList<ShapeNode *>(m_parent->getChildren());
-		  ret.removeOne(this);
-		  return ret;
+	 if (m_parent) {
+		  QList<ShapeNode*> nodes = QList<ShapeNode *>(m_parent->children());
+		  nodes.removeOne(this);
+		  return nodes;
 	 }
+	 else return QList<ShapeNode*>();
 }
 
 int ShapeNode::calculateTreeHeights(int from_root)

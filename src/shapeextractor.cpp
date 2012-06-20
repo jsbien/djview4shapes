@@ -76,6 +76,8 @@ bool ShapeExtractor::extract(int pageno)
 
 		int idx = shape.parent >= 0 ? shape.parent : -1;
 		shapes_children.insert(idx, i);
+		if (i < idx)
+			qDebug() << "Kicha" << i << idx;
 
 		GP<GBitmap> bits = shape.bits;
 		if (!bits)
