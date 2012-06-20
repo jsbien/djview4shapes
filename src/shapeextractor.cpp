@@ -60,16 +60,15 @@ bool ShapeExtractor::extract(int pageno)
 		return false;
 	}
 
-	int shapesCount = jimg->get_shape_count();
 
-	QVector<ShapeNode *> shapes_nodes(shapesCount);
-	QMultiHash<int, int> shapes_children;
-	//QSize boundingShapeSize(0, 0);
+	QVector<ShapeNode*> shapes;
+	int shapesCount = jimg->get_shape_count();
 	for (int i = 0; i < shapesCount; i++) {
 		JB2Shape shape = jimg->get_shape(i);
 
-		int idx = shape.parent >= 0 ? shape.parent : -1;
-		shapes_children.insert(idx, i);
+		ShapeNode* parent = 0;
+		if (shape.parent >= 0 && shape.parent < shapes.count())
+			parent = shapes[shape.parent];
 
 		GP<GBitmap> bits = shape.bits;
 		if (!bits)
@@ -78,43 +77,22 @@ bool ShapeExtractor::extract(int pageno)
 		bits->save_pbm(*bs);
 		TArray<char> array = bs->get_data();
 
-		ShapeNode * node = new ShapeNode(i);
-		node->pixmap().loadFromData(reinterpret_cast<const uchar*>((char*)array), array.size());
-		node->pixmap().setMask(node->pixmap().createMaskFromColor(Qt::white, Qt::MaskInColor)); //add transparency
+		QPixmap pixmap;
+		pixmap.loadFromData(reinterpret_cast<const uchar*>((char*)array), array.size());
+		pixmap.setMask(pixmap.createMaskFromColor(Qt::white, Qt::MaskInColor)); //add transparency
 		//boundingShapeSize = boundingShapeSize.expandedTo(node->getPixmap().size());
-
-		shapes_nodes[i] = node;
+		shapes.append(new ShapeNode(parent, i, pixmap));
 	}
 
 	// now put blits
 	int blitCount = jimg->get_blit_count();
 	for (int i = 0; i < blitCount; i++) {
 		JB2Blit *blit = jimg->get_blit(i);
-		if (blit && shapes_nodes[blit->shapeno]) {
-			shapes_nodes[blit->shapeno]->addBlit(blit->left, blit->bottom);
-		}
+		if (blit && int(blit->shapeno) < shapes.count())
+			shapes[blit->shapeno]->addBlit(blit->left, blit->bottom);
 	}
 
-	QMultiHash<int, int>::iterator itr;
-
-	//set parentness
-	for (int parent_id = 0; parent_id < shapesCount; parent_id++) {
-		itr = shapes_children.find(parent_id);
-		while (itr != shapes_children.end() && itr.key() == parent_id) {
-			if (shapes_nodes[itr.value()])
-				shapes_nodes[itr.value()]->setParent(shapes_nodes[parent_id]);
-			++itr;
-		}
-	}
-
-	//find root shapes
-	itr = shapes_children.find(-1);
-	while (itr != shapes_children.end() && itr.key() == -1) {
-		if (shapes_nodes[itr.value()]) {
-			m_shapes.append(shapes_nodes[itr.value()]);
-		}
-		++itr;
-	};
+	m_shapes = shapes;
 
 	qSort(m_shapes.begin(), m_shapes.end(), ShapeNode::greaterThan);
 	qDebug("Grabed %d shapes for page %d", shapesCount, pageno);

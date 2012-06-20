@@ -20,7 +20,7 @@ public:
 	int nodeCount();
 private:
 	QDjVuDocument* m_document;
-	QList<ShapeNode*> m_shapes;
+	QVector<ShapeNode*> m_shapes;
 };
 
 #endif // SHAPEEXTRACTOR_H
