@@ -43,18 +43,6 @@ QList<ShapeNode *> ShapeNode::siblings()
 	 else return QList<ShapeNode*>();
 }
 
-int ShapeNode::calculateTreeHeights(int from_root)
-{
-	 m_distanceToRoot = from_root;
-	 m_distanceToLeaf = 0;
-	 for (QList<ShapeNode *>::iterator i = m_children.begin(); i != m_children.end(); ++i) {
-		  int to_leaf = (*i)->calculateTreeHeights(from_root + 1);
-		  m_distanceToLeaf = to_leaf > m_distanceToLeaf ? to_leaf : m_distanceToLeaf;
-	 }
-
-	 return m_distanceToLeaf + 1;
-}
-
 void ShapeNode::addBlit(unsigned short left, unsigned short bottom)
 {
 	 m_blits.append(qMakePair(left, bottom));
@@ -65,5 +53,5 @@ bool ShapeNode::greaterThan(ShapeNode * n1, ShapeNode *n2)
 	 if (!n1 || !n2)
 		  return false;
 
-	 return n1->getPixmap().size().width() > n2->getPixmap().size().width();
+	 return n1->pixmap().size().width() > n2->pixmap().size().width();
 }

@@ -18,8 +18,6 @@
 
 #include <QtGui>
 
-class ShapeTableWidgetItem;
-
 class ShapeNode
 {
 public:
@@ -28,21 +26,17 @@ public:
 	 ShapeNode(int id) : m_id(id), m_parent(0) {}
 	 ~ShapeNode();
 
-	 int getId() { return m_id; }
-	 QPixmap& getPixmap() { return m_pixmap; }
+	 QPixmap& pixmap() { return m_pixmap; }
 
 	 QList<ShapeNode *> children() {return m_children;}
 	 QList<ShapeNode *> siblings();
 	 ShapeNode * getParent() { return m_parent; }
 
-	 QList<QPair<unsigned short, unsigned short> > getBlits() { return m_blits; }
+	 // Blits
+	 QList<QPair<unsigned short, unsigned short> > blits() { return m_blits; }
 	 void addBlit(unsigned short left, unsigned short bottom);
 
 	 void setParent(ShapeNode *m_parent);
-
-	 void calculateTreeHeights() { calculateTreeHeights(0); }
-	 int getToRootHeight() { return m_distanceToRoot; }
-	 int getToLeafHeight() { return m_distanceToLeaf; }
 
 	 static bool greaterThan(ShapeNode * n1, ShapeNode *n2);
 private:
@@ -51,10 +45,6 @@ private:
 	 QPixmap m_pixmap;
 	 QList<ShapeNode*> m_children;
 	 QList<QPair<unsigned short, unsigned short> > m_blits;
-	 int m_distanceToRoot;
-	 int m_distanceToLeaf;
-
-	 int calculateTreeHeights(int from_root);
 };
 
 #endif // SHAPENODE_H

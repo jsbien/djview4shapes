@@ -22,7 +22,7 @@ void ShapesWidget::open(QDjVuDocument *document)
 	setRowCount((m_extractor->nodeCount() + Columns - 1) / Columns);
 	for (int i = 0; i < m_extractor->nodeCount(); i++) {
 		QTableWidgetItem* item = new QTableWidgetItem;
-		item->setIcon(m_extractor->node(i)->getPixmap());
+		item->setIcon(m_extractor->node(i)->pixmap());
 		setItem(i / Columns, i % Columns, item);
 	}
 }

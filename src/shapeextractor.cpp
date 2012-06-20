@@ -60,24 +60,16 @@ bool ShapeExtractor::extract(int pageno)
 		return false;
 	}
 
-	int sh_count = jimg->get_shape_count();
-	int blit_count = jimg->get_blit_count();
+	int shapesCount = jimg->get_shape_count();
 
-//	progress->setMaximum(sh_count + blit_count);
-//	progress->show();
-
-	QVector<ShapeNode *> shapes_nodes(sh_count);
+	QVector<ShapeNode *> shapes_nodes(shapesCount);
 	QMultiHash<int, int> shapes_children;
 	//QSize boundingShapeSize(0, 0);
-	for (int i = 0; i < sh_count; i++) {
+	for (int i = 0; i < shapesCount; i++) {
 		JB2Shape shape = jimg->get_shape(i);
-		/*if (!shape)
-					continue;*/
 
 		int idx = shape.parent >= 0 ? shape.parent : -1;
 		shapes_children.insert(idx, i);
-		if (i < idx)
-			qDebug() << "Kicha" << i << idx;
 
 		GP<GBitmap> bits = shape.bits;
 		if (!bits)
@@ -87,28 +79,26 @@ bool ShapeExtractor::extract(int pageno)
 		TArray<char> array = bs->get_data();
 
 		ShapeNode * node = new ShapeNode(i);
-		node->getPixmap().loadFromData(reinterpret_cast<const uchar*>((char*)array), array.size());
-		node->getPixmap().setMask(node->getPixmap().createMaskFromColor(Qt::white, Qt::MaskInColor)); //add transparency
+		node->pixmap().loadFromData(reinterpret_cast<const uchar*>((char*)array), array.size());
+		node->pixmap().setMask(node->pixmap().createMaskFromColor(Qt::white, Qt::MaskInColor)); //add transparency
 		//boundingShapeSize = boundingShapeSize.expandedTo(node->getPixmap().size());
 
 		shapes_nodes[i] = node;
-//		progress->setValue(i);
 	}
 
 	// now put blits
-	for (int i = 0; i < blit_count; i++) {
+	int blitCount = jimg->get_blit_count();
+	for (int i = 0; i < blitCount; i++) {
 		JB2Blit *blit = jimg->get_blit(i);
 		if (blit && shapes_nodes[blit->shapeno]) {
 			shapes_nodes[blit->shapeno]->addBlit(blit->left, blit->bottom);
-			//qDebug("blit %d %u %u %u", i, blit->left, blit->bottom, blit->shapeno);
 		}
-//		progress->setValue(i + sh_count);
 	}
 
 	QMultiHash<int, int>::iterator itr;
 
 	//set parentness
-	for (int parent_id = 0; parent_id < sh_count; parent_id++) {
+	for (int parent_id = 0; parent_id < shapesCount; parent_id++) {
 		itr = shapes_children.find(parent_id);
 		while (itr != shapes_children.end() && itr.key() == parent_id) {
 			if (shapes_nodes[itr.value()])
@@ -122,21 +112,12 @@ bool ShapeExtractor::extract(int pageno)
 	while (itr != shapes_children.end() && itr.key() == -1) {
 		if (shapes_nodes[itr.value()]) {
 			m_shapes.append(shapes_nodes[itr.value()]);
-			shapes_nodes[itr.value()]->calculateTreeHeights();
-
-			//DEBUG
-			//if (shapes_nodes[itr.value()]->getToRootHeight() || shapes_nodes[itr.value()]->getToLeafHeight()) {
-			//    *itr;
-			//}
 		}
 		++itr;
 	};
-//	roots.first = sh_count;
 
 	qSort(m_shapes.begin(), m_shapes.end(), ShapeNode::greaterThan);
-//	progress->hide();
-
-	qDebug("Grabed %d shapes for page %d", sh_count, pageno);
+	qDebug("Grabed %d shapes for page %d", shapesCount, pageno);
 	return true;
 }
 
