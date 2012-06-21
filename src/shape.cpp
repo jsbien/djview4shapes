@@ -38,7 +38,7 @@ void ShapeNode::addBlit(unsigned short left, unsigned short bottom)
 	 m_blits.append(qMakePair(left, bottom));
 }
 
-bool ShapeNode::greaterThan(ShapeNode * n1, ShapeNode *n2)
+bool ShapeNode::widerThan(ShapeNode * n1, ShapeNode *n2)
 {
 	 if (!n1 || !n2)
 		  return false;

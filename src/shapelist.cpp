@@ -8,3 +8,12 @@
 ShapeList::ShapeList()
 {
 }
+
+void ShapeList::sort(ShapeList::SortMethod method)
+{
+	switch (method) {
+	case SortByWidth:
+		qSort(begin(), end(), ShapeNode::widerThan);
+		break;
+	}
+}

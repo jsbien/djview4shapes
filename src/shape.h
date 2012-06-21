@@ -34,7 +34,7 @@ public:
 	 // Blits
 	 QList<QPair<unsigned short, unsigned short> > blits() { return m_blits; }
 	 void addBlit(unsigned short left, unsigned short bottom);
-	 static bool greaterThan(ShapeNode * n1, ShapeNode *n2);
+	 static bool widerThan(ShapeNode * n1, ShapeNode *n2);
 private:
 	 ShapeNode *m_parent;
 	 ShapeList m_children;

@@ -25,6 +25,8 @@ void ShapesWidget::open(QDjVuDocument *document)
 	m_shapes.append(extractor.extract(1, m_rootShape));
 	extractor.close();
 
+	m_shapes.sort(ShapeList::SortByWidth);
+
 	const int Columns = 20;
 	setColumnCount(Columns);
 	setRowCount((m_shapes.count() + Columns - 1) / Columns);

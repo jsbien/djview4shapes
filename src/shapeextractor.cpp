@@ -91,7 +91,6 @@ ShapeList ShapeExtractor::extract(int pageno, ShapeNode *root)
 			shapes[blit->shapeno]->addBlit(blit->left, blit->bottom);
 	}
 
-	qSort(shapes.begin(), shapes.end(), ShapeNode::greaterThan);
 	qDebug("Grabed %d shapes for page %d", shapesCount, pageno);
 	return shapes;
 }
