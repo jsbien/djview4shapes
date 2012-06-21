@@ -30,15 +30,20 @@ void ShapeExtractor::open(QDjVuDocument *document)
 	m_document = document;
 }
 
+int ShapeExtractor::pages() const
+{
+	return ddjvu_document_get_pagenum(*m_document);
+}
+
 ShapeList ShapeExtractor::extract(int pageno, ShapeNode *root)
 {
 	ShapeList shapes;
-
 	if (!m_document)
 		return shapes;
 
 	struct DJVU::ddjvu_page_s* page = reinterpret_cast<DJVU::ddjvu_page_s *>(
 				ddjvu_page_create_by_pageno(*m_document, pageno));
+
 	if (!page) {
 		qWarning("Cound not render djvupage, page %d", pageno);
 		return shapes;
@@ -58,7 +63,6 @@ ShapeList ShapeExtractor::extract(int pageno, ShapeNode *root)
 		qWarning("Cound not get fbjb, page %d", pageno);
 		return shapes;
 	}
-
 
 	int shapesCount = jimg->get_shape_count();
 	for (int i = 0; i < shapesCount; i++) {

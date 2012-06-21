@@ -24,13 +24,10 @@ void ShapesWidget::open(QDjVuDocument *document)
 {
 	ShapeExtractor extractor;
 	extractor.open(document);
-	int page = 0;
-	forever {
-		ShapeList shapes = extractor.extract(page++, m_rootShape);
-		if (shapes.isEmpty())
-			break;
-		else m_shapes.append(shapes);
-	}
+
+	int pages = extractor.pages();
+	for (int page = 0; page < pages; page++)
+		m_shapes.append(extractor.extract(page, m_rootShape));
 	extractor.close();
 
 	m_shapes.sort(ShapeList::SortByPostorder, m_rootShape);
