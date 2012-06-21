@@ -64,10 +64,9 @@ ShapeList ShapeExtractor::extract(int pageno, ShapeNode *root)
 	for (int i = 0; i < shapesCount; i++) {
 		JB2Shape shape = jimg->get_shape(i);
 
-		ShapeNode* parent = 0;
+		ShapeNode* parent = root;
 		if (shape.parent >= 0 && shape.parent < shapes.count())
 			parent = shapes[shape.parent];
-		else parent = root;
 
 		GP<GBitmap> bits = shape.bits;
 		if (!bits)

@@ -12,9 +12,12 @@ class ShapeNode;
 class ShapeList : public QList<ShapeNode*>
 {
 public:
-	enum SortMethod {SortByWidth};
+	enum SortMethod {SortByWidth, SortByPreorder};
 	ShapeList();
-	void sort(SortMethod method);
+	void sort(SortMethod method, ShapeNode* root);
+private:
+	void preorderSort(ShapeNode* root);
+	void doPreorderSort(ShapeList* newOrder, ShapeNode* root);
 };
 
 #endif // SHAPELIST_H
