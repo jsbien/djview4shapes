@@ -24,10 +24,7 @@ void ShapesWidget::open(QDjVuDocument *document)
 {
 	ShapeExtractor extractor;
 	extractor.open(document);
-
-	int pages = extractor.pages();
-	for (int page = 0; page < pages; page++)
-		m_shapes.append(extractor.extract(page, m_rootShape));
+	m_shapes = extractor.extract(m_rootShape);
 	extractor.close();
 
 	m_shapes.sort(ShapeList::SortByPostorder, m_rootShape);

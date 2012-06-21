@@ -35,11 +35,21 @@ int ShapeExtractor::pages() const
 	return ddjvu_document_get_pagenum(*m_document);
 }
 
-ShapeList ShapeExtractor::extract(int pageno, ShapeNode *root)
+ShapeList ShapeExtractor::extract(ShapeNode *root)
 {
 	ShapeList shapes;
 	if (!m_document)
 		return shapes;
+
+	int pageCount = pages();
+	for (int page = 0; page < pageCount; page++)
+		shapes.append(extractPage(page, root));
+	return shapes;
+}
+
+ShapeList ShapeExtractor::extractPage(int pageno, ShapeNode *root)
+{
+	ShapeList shapes;
 
 	struct DJVU::ddjvu_page_s* page = reinterpret_cast<DJVU::ddjvu_page_s *>(
 				ddjvu_page_create_by_pageno(*m_document, pageno));

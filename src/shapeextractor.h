@@ -16,9 +16,9 @@ public:
 	void open(QDjVuDocument* document);
 	int pages() const;
 	void close() {m_document = 0;}
-	ShapeList extract(int page, ShapeNode* root);
+	ShapeList extract(ShapeNode* root);
 private:
-	ShapeList extractPage(int page, ShapeNode* root);
+	ShapeList extractPage(int pageno, ShapeNode* root);
 	QDjVuDocument* m_document;
 };
 
