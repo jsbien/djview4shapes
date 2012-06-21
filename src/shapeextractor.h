@@ -22,6 +22,7 @@ signals:
 private:
 	ShapeList extractPage(int pageno, ShapeNode* root);
 	QDjVuDocument* m_document;
+	QHash<QByteArray, int> m_pixmaps;
 };
 
 #endif // SHAPEEXTRACTOR_H

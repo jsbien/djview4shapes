@@ -77,6 +77,8 @@ ShapeList ShapeExtractor::extractPage(int pageno, ShapeNode *root)
 		return shapes;
 	}
 
+	int shared = 0;
+
 	int shapesCount = jimg->get_shape_count();
 	for (int i = 0; i < shapesCount; i++) {
 		JB2Shape shape = jimg->get_shape(i);
@@ -97,6 +99,11 @@ ShapeList ShapeExtractor::extractPage(int pageno, ShapeNode *root)
 		pixmap.setMask(pixmap.createMaskFromColor(Qt::white, Qt::MaskInColor)); //add transparency
 		//boundingShapeSize = boundingShapeSize.expandedTo(node->getPixmap().size());
 		shapes.append(new ShapeNode(parent, pixmap));
+
+		QByteArray pattern(reinterpret_cast<const char*>((char*)array));
+		if (m_pixmaps.contains(pattern))
+			shared++;
+		else m_pixmaps.insert(pattern, pageno);
 	}
 
 	// now put blits
@@ -107,7 +114,7 @@ ShapeList ShapeExtractor::extractPage(int pageno, ShapeNode *root)
 			shapes[blit->shapeno]->addBlit(blit->left, blit->bottom);
 	}
 
-	qDebug("Grabed %d shapes for page %d", shapesCount, pageno);
+	qDebug("%d images of %d shared on page %d", shared, shapesCount, pageno);
 	return shapes;
 }
 
