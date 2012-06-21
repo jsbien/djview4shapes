@@ -32,9 +32,9 @@ HEADERS += recentfiles.h \
 	 qdjvu.h \
 	 messagedialog.h \
 	 version.h \
-	 shapenode.h \
 	 shapeswidget.h \
-	 shapeextractor.h
+	 shapeextractor.h \
+    shape.h
 
 SOURCES += recentfiles.cpp \
 	 mainwindow.cpp \
@@ -44,9 +44,9 @@ SOURCES += recentfiles.cpp \
 	 messagedialog.cpp \
 	 version.cpp \
 	 main.cpp \
-	 shapenode.cpp \
 	 shapeswidget.cpp \
-	 shapeextractor.cpp
+	 shapeextractor.cpp \
+    shape.cpp
 FORMS = mainwindow.ui
 
 RESOURCES += \

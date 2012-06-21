@@ -13,45 +13,38 @@
 *   GNU General Public License for more details.
 ****************************************************************************/
 
-#include "shapenode.h"
+#ifndef SHAPE_H
+#define SHAPE_H
 
-ShapeNode::ShapeNode(ShapeNode *parent, int id, QPixmap pixmap) :
-	m_id(id), m_pixmap(pixmap)
+#include <QtGui>
+
+class Shape
 {
-	 setParent(parent);
-}
+public:
+	 Shape(Shape *m_parent, int id, QPixmap pixmap);
+	 Shape(int id, QPixmap pixmap) : m_id(id), m_parent(0), m_pixmap(pixmap) {}
+	 Shape(int id) : m_id(id), m_parent(0) {}
+	 ~Shape();
 
-void ShapeNode::setParent(ShapeNode *parent)
-{
-	m_parent = parent;
-	if (m_parent)
-		m_parent->m_children.append(this);
-}
+	 QPixmap& pixmap() { return m_pixmap; }
 
-ShapeNode::~ShapeNode()
-{
-	qDeleteAll(m_children);
-}
+	 QList<Shape *> children() {return m_children;}
+	 QList<Shape *> siblings();
+	 Shape * getParent() { return m_parent; }
 
-QList<ShapeNode *> ShapeNode::siblings()
-{
-	 if (m_parent) {
-		  QList<ShapeNode*> nodes = QList<ShapeNode *>(m_parent->children());
-		  nodes.removeOne(this);
-		  return nodes;
-	 }
-	 else return QList<ShapeNode*>();
-}
+	 // Blits
+	 QList<QPair<unsigned short, unsigned short> > blits() { return m_blits; }
+	 void addBlit(unsigned short left, unsigned short bottom);
 
-void ShapeNode::addBlit(unsigned short left, unsigned short bottom)
-{
-	 m_blits.append(qMakePair(left, bottom));
-}
+	 void setParent(Shape *m_parent);
 
-bool ShapeNode::greaterThan(ShapeNode * n1, ShapeNode *n2)
-{
-	 if (!n1 || !n2)
-		  return false;
+	 static bool greaterThan(Shape * n1, Shape *n2);
+private:
+	 int m_id;
+	 Shape *m_parent;
+	 QPixmap m_pixmap;
+	 QList<Shape*> m_children;
+	 QList<QPair<unsigned short, unsigned short> > m_blits;
+};
 
-	 return n1->pixmap().size().width() > n2->pixmap().size().width();
-}
+#endif // SHAPENODE_H

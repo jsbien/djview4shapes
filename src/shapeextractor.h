@@ -5,7 +5,7 @@
 #ifndef SHAPEEXTRACTOR_H
 #define SHAPEEXTRACTOR_H
 
-#include "shapenode.h"
+#include "shape.h"
 #include "qdjvu.h"
 
 class ShapeExtractor : public QObject
@@ -16,11 +16,11 @@ public:
 	void open(QDjVuDocument* document);
 	void close() {m_document = 0;}
 	bool extract(int page);
-	ShapeNode* node(int i) const;
+	Shape* node(int i) const;
 	int nodeCount();
 private:
 	QDjVuDocument* m_document;
-	QVector<ShapeNode*> m_shapes;
+	QVector<Shape*> m_shapes;
 };
 
 #endif // SHAPEEXTRACTOR_H

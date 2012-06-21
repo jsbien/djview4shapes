@@ -61,12 +61,12 @@ bool ShapeExtractor::extract(int pageno)
 	}
 
 
-	QVector<ShapeNode*> shapes;
+	QVector<Shape*> shapes;
 	int shapesCount = jimg->get_shape_count();
 	for (int i = 0; i < shapesCount; i++) {
 		JB2Shape shape = jimg->get_shape(i);
 
-		ShapeNode* parent = 0;
+		Shape* parent = 0;
 		if (shape.parent >= 0 && shape.parent < shapes.count())
 			parent = shapes[shape.parent];
 
@@ -81,7 +81,7 @@ bool ShapeExtractor::extract(int pageno)
 		pixmap.loadFromData(reinterpret_cast<const uchar*>((char*)array), array.size());
 		pixmap.setMask(pixmap.createMaskFromColor(Qt::white, Qt::MaskInColor)); //add transparency
 		//boundingShapeSize = boundingShapeSize.expandedTo(node->getPixmap().size());
-		shapes.append(new ShapeNode(parent, i, pixmap));
+		shapes.append(new Shape(parent, i, pixmap));
 	}
 
 	// now put blits
@@ -94,12 +94,12 @@ bool ShapeExtractor::extract(int pageno)
 
 	m_shapes = shapes;
 
-	qSort(m_shapes.begin(), m_shapes.end(), ShapeNode::greaterThan);
+	qSort(m_shapes.begin(), m_shapes.end(), Shape::greaterThan);
 	qDebug("Grabed %d shapes for page %d", shapesCount, pageno);
 	return true;
 }
 
-ShapeNode *ShapeExtractor::node(int i) const
+Shape *ShapeExtractor::node(int i) const
 {
 	return m_shapes[i];
 }
