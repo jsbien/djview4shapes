@@ -17,6 +17,7 @@
 #define SHAPE_H
 
 #include <QtGui>
+#include "shapelist.h"
 
 class Shape
 {
@@ -28,8 +29,8 @@ public:
 
 	 QPixmap& pixmap() { return m_pixmap; }
 
-	 QList<Shape *> children() {return m_children;}
-	 QList<Shape *> siblings();
+	 ShapeList children() {return m_children;}
+	 ShapeList siblings();
 	 Shape * getParent() { return m_parent; }
 
 	 // Blits
@@ -43,7 +44,7 @@ private:
 	 int m_id;
 	 Shape *m_parent;
 	 QPixmap m_pixmap;
-	 QList<Shape*> m_children;
+	 ShapeList m_children;
 	 QList<QPair<unsigned short, unsigned short> > m_blits;
 };
 

@@ -34,7 +34,8 @@ HEADERS += recentfiles.h \
 	 version.h \
 	 shapeswidget.h \
 	 shapeextractor.h \
-    shape.h
+    shape.h \
+    shapelist.h
 
 SOURCES += recentfiles.cpp \
 	 mainwindow.cpp \
@@ -46,7 +47,8 @@ SOURCES += recentfiles.cpp \
 	 main.cpp \
 	 shapeswidget.cpp \
 	 shapeextractor.cpp \
-    shape.cpp
+    shape.cpp \
+    shapelist.cpp
 FORMS = mainwindow.ui
 
 RESOURCES += \

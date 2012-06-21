@@ -33,14 +33,14 @@ Shape::~Shape()
 	qDeleteAll(m_children);
 }
 
-QList<Shape *> Shape::siblings()
+ShapeList Shape::siblings()
 {
 	 if (m_parent) {
-		  QList<Shape*> nodes = QList<Shape *>(m_parent->children());
+		  ShapeList nodes = m_parent->children();
 		  nodes.removeOne(this);
 		  return nodes;
 	 }
-	 else return QList<Shape*>();
+	 else return ShapeList();
 }
 
 void Shape::addBlit(unsigned short left, unsigned short bottom)
