@@ -23,6 +23,13 @@ ShapeNode::ShapeNode(ShapeNode *parent, QPixmap pixmap) :
 		m_parent->m_children.append(this);
 }
 
+QPixmap ShapeNode::scaledPixmap(const QSize& maxSize) const
+{
+	if (m_pixmap.width() > maxSize.width() || m_pixmap.height() > maxSize.width())
+		return m_pixmap.scaled(maxSize, Qt::KeepAspectRatio);
+	else return m_pixmap;
+}
+
 ShapeList ShapeNode::siblings()
 {
 	 if (m_parent) {

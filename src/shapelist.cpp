@@ -21,6 +21,14 @@ void ShapeList::sort(ShapeList::SortMethod method, ShapeNode* root)
 	}
 }
 
+QSize ShapeList::maximumSize() const
+{
+	QSize size;
+	for (int i = 0; i < count(); i++)
+		size = size.expandedTo(at(i)->pixmap().size());
+	return size;
+}
+
 void ShapeList::doSort(ShapeList::SortMethod method, ShapeNode *root)
 {
 	ShapeList newOrder;

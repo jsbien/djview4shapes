@@ -3,13 +3,15 @@
 ****************************************************************************/
 
 #include "shapeswidget.h"
+#include "shapemodel.h"
 #include "shapeextractor.h"
 #include "messagedialog.h"
 
 ShapesWidget::ShapesWidget(QWidget *parent) :
-	QTableWidget(parent)
+	QTableView(parent)
 {
 	m_rootShape = new ShapeNode();
+	m_model = new ShapeModel(&m_shapes, this);
 }
 
 ShapesWidget::~ShapesWidget()
@@ -26,15 +28,7 @@ void ShapesWidget::open(QDjVuDocument *document)
 	extractor.close();
 
 	m_shapes.sort(ShapeList::SortByPostorder, m_rootShape);
-
-	const int Columns = 20;
-	setColumnCount(Columns);
-	setRowCount((m_shapes.count() + Columns - 1) / Columns);
-	for (int i = 0; i < m_shapes.count(); i++) {
-		QTableWidgetItem* item = new QTableWidgetItem;
-		item->setIcon(m_shapes[i]->pixmap());
-		setItem(i / Columns, i % Columns, item);
-	}
+	setModel(m_model);
 }
 
 void ShapesWidget::close()

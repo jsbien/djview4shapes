@@ -25,11 +25,10 @@ public:
 	 ShapeNode(ShapeNode *m_parent, QPixmap pixmap);
 	 ShapeNode() : m_parent(0) {}
 
-	 QPixmap& pixmap() { return m_pixmap; }
-
+	 const QPixmap& pixmap() { return m_pixmap; }
+	 QPixmap scaledPixmap(const QSize& maxSize) const;
 	 ShapeList children() {return m_children;}
 	 ShapeList siblings();
-	 ShapeNode * getParent() { return m_parent; }
 
 	 // Blits
 	 QList<QPair<unsigned short, unsigned short> > blits() { return m_blits; }

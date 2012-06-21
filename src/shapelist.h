@@ -15,6 +15,7 @@ public:
 	enum SortMethod {SortByWidth, SortByPreorder, SortByPostorder};
 	ShapeList();
 	void sort(SortMethod method, ShapeNode* root);
+	QSize maximumSize() const;
 private:
 	void doSort(SortMethod method, ShapeNode* root);
 	void preorderSort(ShapeList* newOrder, ShapeNode* root);

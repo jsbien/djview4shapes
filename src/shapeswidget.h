@@ -9,8 +9,9 @@
 #include <QtGui>
 
 class QDjVuDocument;
+class ShapeModel;
 
-class ShapesWidget : public QTableWidget
+class ShapesWidget : public QTableView
 {
 	 Q_OBJECT
 public:
@@ -21,6 +22,7 @@ public:
 private:
 	ShapeList m_shapes;
 	ShapeNode* m_rootShape;
+	ShapeModel* m_model;
 };
 
 

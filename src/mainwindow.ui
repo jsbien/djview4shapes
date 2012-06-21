@@ -24,7 +24,19 @@
        <property name="editTriggers">
         <set>QAbstractItemView::NoEditTriggers</set>
        </property>
+       <attribute name="horizontalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
        <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>30</number>
+       </attribute>
+       <attribute name="horizontalHeaderMinimumSectionSize">
+        <number>30</number>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="verticalHeaderDefaultSectionSize">
         <number>30</number>
        </attribute>
       </widget>
@@ -107,15 +119,15 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>ShapesWidget</class>
-   <extends>QTableWidget</extends>
-   <header>shapeswidget.h</header>
-  </customwidget>
-  <customwidget>
    <class>QDjVuWidget</class>
    <extends>QWidget</extends>
    <header>qdjvuwidget.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ShapesWidget</class>
+   <extends>QTableView</extends>
+   <header>shapeswidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
