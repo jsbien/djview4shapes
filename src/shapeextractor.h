@@ -15,12 +15,9 @@ public:
 	ShapeExtractor(QObject* parent = 0);
 	void open(QDjVuDocument* document);
 	void close() {m_document = 0;}
-	bool extract(int page);
-	Shape* node(int i) const;
-	int nodeCount();
+	ShapeList extract(int page, ShapeNode* root);
 private:
 	QDjVuDocument* m_document;
-	QVector<Shape*> m_shapes;
 };
 
 #endif // SHAPEEXTRACTOR_H

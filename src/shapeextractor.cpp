@@ -27,48 +27,47 @@ ShapeExtractor::ShapeExtractor(QObject* parent) : QObject(parent)
 
 void ShapeExtractor::open(QDjVuDocument *document)
 {
-	qDeleteAll(m_shapes);
-	m_shapes.clear();
 	m_document = document;
 }
 
-bool ShapeExtractor::extract(int pageno)
+ShapeList ShapeExtractor::extract(int pageno, ShapeNode *root)
 {
+	ShapeList shapes;
+
 	if (!m_document)
-		return false;
+		return shapes;
 
 	struct DJVU::ddjvu_page_s* page = reinterpret_cast<DJVU::ddjvu_page_s *>(
 				ddjvu_page_create_by_pageno(*m_document, pageno));
-
 	if (!page) {
 		qWarning("Cound not render djvupage, page %d", pageno);
-		return false;
+		return shapes;
 	}
 
 	GP<DjVuImage> img = ddjvu_get_DjVuImage(page);
 	if (!img) {
 		qWarning("Cound not render djvuimage, page %d", pageno);
-		return false;
+		return shapes;
 	}
 
 	if (!img->wait_for_complete_decode())
-		return false;
+		return shapes;
 
 	GP<JB2Image> jimg = img->get_fgjb();
 	if (!jimg) {
 		qWarning("Cound not get fbjb, page %d", pageno);
-		return false;
+		return shapes;
 	}
 
 
-	QVector<Shape*> shapes;
 	int shapesCount = jimg->get_shape_count();
 	for (int i = 0; i < shapesCount; i++) {
 		JB2Shape shape = jimg->get_shape(i);
 
-		Shape* parent = 0;
+		ShapeNode* parent = 0;
 		if (shape.parent >= 0 && shape.parent < shapes.count())
 			parent = shapes[shape.parent];
+		else parent = root;
 
 		GP<GBitmap> bits = shape.bits;
 		if (!bits)
@@ -81,7 +80,7 @@ bool ShapeExtractor::extract(int pageno)
 		pixmap.loadFromData(reinterpret_cast<const uchar*>((char*)array), array.size());
 		pixmap.setMask(pixmap.createMaskFromColor(Qt::white, Qt::MaskInColor)); //add transparency
 		//boundingShapeSize = boundingShapeSize.expandedTo(node->getPixmap().size());
-		shapes.append(new Shape(parent, i, pixmap));
+		shapes.append(new ShapeNode(parent, pixmap));
 	}
 
 	// now put blits
@@ -92,22 +91,11 @@ bool ShapeExtractor::extract(int pageno)
 			shapes[blit->shapeno]->addBlit(blit->left, blit->bottom);
 	}
 
-	m_shapes = shapes;
-
-	qSort(m_shapes.begin(), m_shapes.end(), Shape::greaterThan);
+	qSort(shapes.begin(), shapes.end(), ShapeNode::greaterThan);
 	qDebug("Grabed %d shapes for page %d", shapesCount, pageno);
-	return true;
+	return shapes;
 }
 
-Shape *ShapeExtractor::node(int i) const
-{
-	return m_shapes[i];
-}
-
-int ShapeExtractor::nodeCount()
-{
-	return m_shapes.count();
-}
 
 
 

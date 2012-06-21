@@ -5,18 +5,22 @@
 #ifndef SHAPESWIDGET_H
 #define SHAPESWIDGET_H
 
+#include "shape.h"
 #include <QtGui>
-#include "shapeextractor.h"
+
+class QDjVuDocument;
 
 class ShapesWidget : public QTableWidget
 {
 	 Q_OBJECT
 public:
-	 explicit ShapesWidget(QWidget* parent = 0);
+	explicit ShapesWidget(QWidget* parent = 0);
+	~ShapesWidget();
 	void open(QDjVuDocument* document);
 	void close();
 private:
-	ShapeExtractor* m_extractor;
+	ShapeList m_shapes;
+	ShapeNode* m_rootShape;
 };
 
 

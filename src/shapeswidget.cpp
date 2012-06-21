@@ -9,25 +9,32 @@
 ShapesWidget::ShapesWidget(QWidget *parent) :
 	QTableWidget(parent)
 {
-	m_extractor = new ShapeExtractor(this);
+	m_rootShape = new ShapeNode();
+}
+
+ShapesWidget::~ShapesWidget()
+{
+	delete m_rootShape;
+	qDeleteAll(m_shapes);
 }
 
 void ShapesWidget::open(QDjVuDocument *document)
 {
-	m_extractor->open(document);
-	m_extractor->extract(1);
+	ShapeExtractor extractor;
+	extractor.open(document);
+	m_shapes.append(extractor.extract(1, m_rootShape));
+	extractor.close();
 
 	const int Columns = 20;
 	setColumnCount(Columns);
-	setRowCount((m_extractor->nodeCount() + Columns - 1) / Columns);
-	for (int i = 0; i < m_extractor->nodeCount(); i++) {
+	setRowCount((m_shapes.count() + Columns - 1) / Columns);
+	for (int i = 0; i < m_shapes.count(); i++) {
 		QTableWidgetItem* item = new QTableWidgetItem;
-		item->setIcon(m_extractor->node(i)->pixmap());
+		item->setIcon(m_shapes[i]->pixmap());
 		setItem(i / Columns, i % Columns, item);
 	}
 }
 
 void ShapesWidget::close()
 {
-	m_extractor->close();
 }

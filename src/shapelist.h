@@ -7,9 +7,9 @@
 
 #include <QtCore>
 
-class Shape;
+class ShapeNode;
 
-class ShapeList : public QList<Shape*>
+class ShapeList : public QList<ShapeNode*>
 {
 public:
 	ShapeList();

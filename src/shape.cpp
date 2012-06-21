@@ -15,25 +15,15 @@
 
 #include "shape.h"
 
-Shape::Shape(Shape *parent, int id, QPixmap pixmap) :
-	m_id(id), m_pixmap(pixmap)
-{
-	 setParent(parent);
-}
-
-void Shape::setParent(Shape *parent)
+ShapeNode::ShapeNode(ShapeNode *parent, QPixmap pixmap) :
+	m_pixmap(pixmap)
 {
 	m_parent = parent;
 	if (m_parent)
 		m_parent->m_children.append(this);
 }
 
-Shape::~Shape()
-{
-	qDeleteAll(m_children);
-}
-
-ShapeList Shape::siblings()
+ShapeList ShapeNode::siblings()
 {
 	 if (m_parent) {
 		  ShapeList nodes = m_parent->children();
@@ -43,12 +33,12 @@ ShapeList Shape::siblings()
 	 else return ShapeList();
 }
 
-void Shape::addBlit(unsigned short left, unsigned short bottom)
+void ShapeNode::addBlit(unsigned short left, unsigned short bottom)
 {
 	 m_blits.append(qMakePair(left, bottom));
 }
 
-bool Shape::greaterThan(Shape * n1, Shape *n2)
+bool ShapeNode::greaterThan(ShapeNode * n1, ShapeNode *n2)
 {
 	 if (!n1 || !n2)
 		  return false;

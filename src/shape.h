@@ -19,32 +19,26 @@
 #include <QtGui>
 #include "shapelist.h"
 
-class Shape
+class ShapeNode
 {
 public:
-	 Shape(Shape *m_parent, int id, QPixmap pixmap);
-	 Shape(int id, QPixmap pixmap) : m_id(id), m_parent(0), m_pixmap(pixmap) {}
-	 Shape(int id) : m_id(id), m_parent(0) {}
-	 ~Shape();
+	 ShapeNode(ShapeNode *m_parent, QPixmap pixmap);
+	 ShapeNode() : m_parent(0) {}
 
 	 QPixmap& pixmap() { return m_pixmap; }
 
 	 ShapeList children() {return m_children;}
 	 ShapeList siblings();
-	 Shape * getParent() { return m_parent; }
+	 ShapeNode * getParent() { return m_parent; }
 
 	 // Blits
 	 QList<QPair<unsigned short, unsigned short> > blits() { return m_blits; }
 	 void addBlit(unsigned short left, unsigned short bottom);
-
-	 void setParent(Shape *m_parent);
-
-	 static bool greaterThan(Shape * n1, Shape *n2);
+	 static bool greaterThan(ShapeNode * n1, ShapeNode *n2);
 private:
-	 int m_id;
-	 Shape *m_parent;
-	 QPixmap m_pixmap;
+	 ShapeNode *m_parent;
 	 ShapeList m_children;
+	 QPixmap m_pixmap;
 	 QList<QPair<unsigned short, unsigned short> > m_blits;
 };
 
