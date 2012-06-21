@@ -19,6 +19,8 @@ public:
 	~ShapesWidget();
 	void open(QDjVuDocument* document);
 	void close();
+signals:
+	void progress(int percentage);
 private:
 	ShapeList m_shapes;
 	ShapeNode* m_rootShape;

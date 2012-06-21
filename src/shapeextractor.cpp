@@ -42,8 +42,11 @@ ShapeList ShapeExtractor::extract(ShapeNode *root)
 		return shapes;
 
 	int pageCount = pages();
-	for (int page = 0; page < pageCount; page++)
+	emit progress(0);
+	for (int page = 0; page < pageCount; page++) {
 		shapes.append(extractPage(page, root));
+		emit progress((page + 1) * 100 / pageCount);
+	}
 	return shapes;
 }
 

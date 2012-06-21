@@ -35,6 +35,8 @@ private slots:
 	void showAboutDialog();
 	/** Document loaded. */
 	void documentLoaded();
+	/** Show progress. */
+	void progress(int percentage);
 protected:
 	 /** Confirm quitting. */
 	 void closeEvent(QCloseEvent* event);

@@ -23,6 +23,8 @@ ShapesWidget::~ShapesWidget()
 void ShapesWidget::open(QDjVuDocument *document)
 {
 	ShapeExtractor extractor;
+	connect(&extractor, SIGNAL(progress(int)), this, SIGNAL(progress(int)));
+
 	extractor.open(document);
 	m_shapes = extractor.extract(m_rootShape);
 	extractor.close();

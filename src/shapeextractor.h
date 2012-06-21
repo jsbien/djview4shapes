@@ -17,6 +17,8 @@ public:
 	int pages() const;
 	void close() {m_document = 0;}
 	ShapeList extract(ShapeNode* root);
+signals:
+	void progress(int percentage);
 private:
 	ShapeList extractPage(int pageno, ShapeNode* root);
 	QDjVuDocument* m_document;

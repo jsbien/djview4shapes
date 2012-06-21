@@ -25,9 +25,13 @@ MainWindow::MainWindow(QWidget *parent) :
 	m_document = 0;
 
 	ui.setupUi(this);
+	ui.progressBar->hide();
 
 	setupActions();
 	setWindowTitle(m_applicationName);
+
+	connect(ui.shapeWidget, SIGNAL(progress(int)), this, SLOT(progress(int)));
+
 	show();
 	restoreSettings();
 }
@@ -85,6 +89,12 @@ void MainWindow::documentLoaded()
 {
 	ui.djvuWidget->setDocument(m_document);
 	ui.shapeWidget->open(m_document);
+}
+
+void MainWindow::progress(int percentage)
+{
+	ui.progressBar->setValue(percentage);
+	ui.progressBar->setVisible(percentage < 100);
 }
 
 
