@@ -16,23 +16,34 @@ void ShapeList::sort(ShapeList::SortMethod method, ShapeNode* root)
 		qSort(begin(), end(), ShapeNode::widerThan);
 		break;
 	case SortByPreorder:
-		preorderSort(root);
+	case SortByPostorder:
+		doSort(method, root);
 	}
 }
 
-void ShapeList::preorderSort(ShapeNode *root)
+void ShapeList::doSort(ShapeList::SortMethod method, ShapeNode *root)
 {
 	ShapeList newOrder;
-	foreach (ShapeNode* node, root->children())
-		doPreorderSort(&newOrder, node);
+	foreach (ShapeNode* node, root->children()) {
+		if (method == SortByPreorder)
+			preorderSort(&newOrder, node);
+		else postorderSort(&newOrder, node);
+	}
 	if (newOrder.count() != count())
 		qWarning("Sorting failed: %d %d", newOrder.count(), count());
 	else *this = newOrder;
 }
 
-void ShapeList::doPreorderSort(ShapeList *newOrder, ShapeNode *root)
+void ShapeList::preorderSort(ShapeList *newOrder, ShapeNode *root)
 {
 	newOrder->append(root);
 	foreach (ShapeNode* node, root->children())
-		doPreorderSort(newOrder, node);
+		preorderSort(newOrder, node);
+}
+
+void ShapeList::postorderSort(ShapeList *newOrder, ShapeNode *root)
+{
+	foreach (ShapeNode* node, root->children())
+		preorderSort(newOrder, node);
+	newOrder->append(root);
 }
