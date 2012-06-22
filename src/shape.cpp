@@ -30,14 +30,28 @@ QPixmap ShapeNode::scaledPixmap(const QSize& maxSize) const
 	else return m_pixmap;
 }
 
-ShapeList ShapeNode::siblings()
+ShapeList ShapeNode::siblings() const
 {
 	 if (m_parent) {
-		  ShapeList nodes = m_parent->children();
-		  nodes.removeOne(this);
-		  return nodes;
+		 ShapeList nodes = m_parent->children();
+		 nodes.removeOne(const_cast<ShapeNode*>(this));
+		 return nodes;
 	 }
 	 else return ShapeList();
+}
+
+int ShapeNode::depth() const
+{
+	int toRoot = 0;
+	for (ShapeNode* node = const_cast<ShapeNode*>(this); node != 0; node = node->m_parent)
+		toRoot++;
+	return toRoot -1;
+}
+
+QString ShapeNode::tooltip() const
+{
+	return tr("Depth: %1\nChildren: %2\nSiblings: %3").arg(depth())
+			.arg(m_children.count()).arg(siblings().count());
 }
 
 void ShapeNode::addBlit(unsigned short left, unsigned short bottom)

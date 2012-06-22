@@ -24,14 +24,21 @@ class ShapeNode
 public:
 	 ShapeNode(ShapeNode *m_parent, QPixmap pixmap);
 	 ShapeNode() : m_parent(0) {}
-
+	 /** @return current pixmap. */
 	 const QPixmap& pixmap() { return m_pixmap; }
+	 /** @return the pixmap of shape scaled to at most @p maxsize. */
 	 QPixmap scaledPixmap(const QSize& maxSize) const;
-	 ShapeList children() {return m_children;}
-	 ShapeList siblings();
+	 /** @return the list of children. */
+	 ShapeList children() const {return m_children;}
+	 /** @return the list of all other children of the same parent. */
+	 ShapeList siblings() const;
+	 /** @return distance to root. */
+	 int depth() const;
+	 /** @return basic information about the node. */
+	 QString tooltip() const;
 
 	 // Blits
-	 QList<QPair<unsigned short, unsigned short> > blits() { return m_blits; }
+	 const QList<QPair<unsigned short, unsigned short> >& blits() { return m_blits; }
 	 void addBlit(unsigned short left, unsigned short bottom);
 	 static bool widerThan(ShapeNode * n1, ShapeNode *n2);
 private:
@@ -39,6 +46,8 @@ private:
 	 ShapeList m_children;
 	 QPixmap m_pixmap;
 	 QList<QPair<unsigned short, unsigned short> > m_blits;
+
+	 Q_DECLARE_TR_FUNCTIONS(ShapeNode)
 };
 
 #endif // SHAPENODE_H
