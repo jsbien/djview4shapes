@@ -41,12 +41,15 @@ ShapeList ShapeExtractor::extract(ShapeNode *root)
 	if (!m_document)
 		return shapes;
 
-	int pageCount = pages();
+	QTime elapsed;
+	elapsed.start();
+	int pageCount = qMin(50, pages());
 	emit progress(0);
 	for (int page = 0; page < pageCount; page++) {
 		shapes.append(extractPage(page, root));
 		emit progress((page + 1) * 100 / pageCount);
 	}
+	qDebug("Time elapsed: %f", elapsed.elapsed() / 1000.0);
 	return shapes;
 }
 
@@ -97,7 +100,6 @@ ShapeList ShapeExtractor::extractPage(int pageno, ShapeNode *root)
 		QPixmap pixmap;
 		pixmap.loadFromData(reinterpret_cast<const uchar*>((char*)array), array.size());
 		pixmap.setMask(pixmap.createMaskFromColor(Qt::white, Qt::MaskInColor)); //add transparency
-		//boundingShapeSize = boundingShapeSize.expandedTo(node->getPixmap().size());
 		shapes.append(new ShapeNode(parent, pixmap));
 
 		QByteArray pattern(reinterpret_cast<const char*>((char*)array));
@@ -111,7 +113,7 @@ ShapeList ShapeExtractor::extractPage(int pageno, ShapeNode *root)
 	for (int i = 0; i < blitCount; i++) {
 		JB2Blit *blit = jimg->get_blit(i);
 		if (blit && int(blit->shapeno) < shapes.count())
-			shapes[blit->shapeno]->addBlit(blit->left, blit->bottom);
+			shapes[blit->shapeno]->addBlit(Blit(pageno, blit->left, blit->bottom));
 	}
 
 	qDebug("%d images of %d shared on page %d", shared, shapesCount, pageno);

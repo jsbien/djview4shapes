@@ -34,7 +34,7 @@ QVariant ShapeModel::data(const QModelIndex &index, int role) const
 	case Qt::DecorationRole:
 		return m_shapes->at(i)->scaledPixmap(QSize(30, 30));
 	case Qt::ToolTipRole:
-		return m_shapes->at(i)->tooltip();
+		return m_shapes->at(i)->toolTip();
 	default:
 		return QVariant();
 	}

@@ -17,6 +17,7 @@
 #define SHAPE_H
 
 #include <QtGui>
+#include "blit.h"
 #include "shapelist.h"
 
 class ShapeNode
@@ -35,17 +36,17 @@ public:
 	 /** @return distance to root. */
 	 int depth() const;
 	 /** @return basic information about the node. */
-	 QString tooltip() const;
+	 QString toolTip() const;
 
 	 // Blits
-	 const QList<QPair<unsigned short, unsigned short> >& blits() { return m_blits; }
-	 void addBlit(unsigned short left, unsigned short bottom);
+	 const QList<Blit>& blits() { return m_blits; }
+	 void addBlit(const Blit& blit);
 	 static bool widerThan(ShapeNode * n1, ShapeNode *n2);
 private:
 	 ShapeNode *m_parent;
 	 ShapeList m_children;
 	 QPixmap m_pixmap;
-	 QList<QPair<unsigned short, unsigned short> > m_blits;
+	 QList<Blit> m_blits;
 
 	 Q_DECLARE_TR_FUNCTIONS(ShapeNode)
 };

@@ -48,15 +48,15 @@ int ShapeNode::depth() const
 	return toRoot -1;
 }
 
-QString ShapeNode::tooltip() const
+QString ShapeNode::toolTip() const
 {
-	return tr("Depth: %1\nChildren: %2\nSiblings: %3").arg(depth())
-			.arg(m_children.count()).arg(siblings().count());
+	return tr("Depth: %1\nChildren: %2\nSiblings: %3\nOccurences: %4").arg(depth())
+			.arg(m_children.count()).arg(siblings().count()).arg(m_blits.count());
 }
 
-void ShapeNode::addBlit(unsigned short left, unsigned short bottom)
+void ShapeNode::addBlit(const Blit &blit)
 {
-	 m_blits.append(qMakePair(left, bottom));
+	 m_blits.append(blit);
 }
 
 bool ShapeNode::widerThan(ShapeNode * n1, ShapeNode *n2)
