@@ -40,7 +40,7 @@
         <number>30</number>
        </attribute>
       </widget>
-      <widget class="QDjVuWidget" name="djvuWidget" native="true"/>
+      <widget class="ShapeDocument" name="djvuWidget" native="true"/>
      </widget>
     </item>
     <item>
@@ -126,15 +126,15 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>QDjVuWidget</class>
-   <extends>QWidget</extends>
-   <header>qdjvuwidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>ShapesWidget</class>
    <extends>QTableView</extends>
    <header>shapeswidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ShapeDocument</class>
+   <extends>QWidget</extends>
+   <header>shapedocument.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

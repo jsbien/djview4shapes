@@ -37,7 +37,8 @@ HEADERS += recentfiles.h \
     shape.h \
     shapelist.h \
     shapemodel.h \
-    blit.h
+    blit.h \
+    shapedocument.h
 
 SOURCES += recentfiles.cpp \
 	 mainwindow.cpp \
@@ -52,7 +53,8 @@ SOURCES += recentfiles.cpp \
     shape.cpp \
     shapelist.cpp \
     shapemodel.cpp \
-    blit.cpp
+    blit.cpp \
+    shapedocument.cpp
 FORMS = mainwindow.ui
 
 RESOURCES += \

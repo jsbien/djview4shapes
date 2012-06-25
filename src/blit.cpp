@@ -6,12 +6,12 @@
 
 Blit::Blit()
 {
-	m_page = m_left = m_bottom = 0;
+	m_page = m_left = m_top = 0;
 }
 
 Blit::Blit(int page, int left, int bottom)
 {
 	m_page = page;
 	m_left = left;
-	m_bottom = bottom;
+	m_top = bottom;
 }

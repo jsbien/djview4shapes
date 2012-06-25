@@ -9,14 +9,14 @@ class Blit
 {
 public:
 	Blit();
-	Blit(int page, int left, int bottom);
+	Blit(int page, int left, int top);
 	int page() const {return m_page;}
 	int left() const {return m_left;}
-	int bottom() const {return m_bottom;}
+	int top() const {return m_top;}
 private:
 	int m_page;
 	int m_left;
-	int m_bottom;
+	int m_top;
 };
 
 #endif // BLIT_H

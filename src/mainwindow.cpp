@@ -31,6 +31,8 @@ MainWindow::MainWindow(QWidget *parent) :
 	setWindowTitle(m_applicationName);
 
 	connect(ui.shapeWidget, SIGNAL(progress(int)), this, SLOT(progress(int)));
+	connect(ui.shapeWidget, SIGNAL(showOccurences(ShapeNode*)), ui.djvuWidget,
+			  SLOT(showOccurences(ShapeNode*)));
 
 	show();
 	restoreSettings();
