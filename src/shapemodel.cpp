@@ -61,9 +61,16 @@ ShapeNode *ShapeModel::nodeAt(const QModelIndex &index) const
 
 void ShapeModel::selectItems(const ShapeList &list)
 {
-	beginResetModel();
-	m_selectedItems.clear();
+	QSet<ShapeNode*> newshapes;
 	for (int i = 0; i < list.count(); i++)
-		m_selectedItems.insert(list[i]);
-	endResetModel();
+		newshapes.insert(list[i]);
+	qSwap(newshapes, m_selectedItems);
+
+	for (int row = 0; row < rowCount(); row++)
+		for (int column = 0; column < columnCount(); column++) {
+			QModelIndex i = index(row, column);
+			ShapeNode* node = nodeAt(i);
+			if (node && (newshapes.contains(node) != m_selectedItems.contains(node)))
+				emit dataChanged(i, i);
+		}
 }

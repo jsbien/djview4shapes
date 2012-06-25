@@ -16,9 +16,9 @@ public:
 
 	// Functions subclassing QAbstractTableModel
 	/** @return number of shapes in one row. This is based on number of columns. */
-	int rowCount(const QModelIndex &parent) const;
+	int rowCount(const QModelIndex &parent = QModelIndex()) const;
 	/** @return number of shapes in one column. This is set by user. */
-	int columnCount(const QModelIndex &parent) const;
+	int columnCount(const QModelIndex &parent = QModelIndex()) const;
 	/** @return data for given cell. */
 	QVariant data(const QModelIndex &index, int role) const;
 
