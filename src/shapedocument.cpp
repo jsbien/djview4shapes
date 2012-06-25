@@ -22,9 +22,8 @@ void ShapeDocument::showOccurences(ShapeNode *node)
 		pos.pageNo = blit.page();
 		pos.inPage = true;
 		pos.doPage = true;
-		pos.posPage.setX(blit.left());
-		pos.posPage.setY(blit.top());
-		addHighlight(pos.pageNo, pos.posPage.x(), pos.posPage.y(), node->pixmap().width(),
+		pos.posPage = blit.position();
+		addHighlight(pos.pageNo, blit.left(), blit.top(), node->pixmap().width(),
 						 node->pixmap().height(), color);
 	}
 

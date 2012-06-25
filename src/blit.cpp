@@ -6,12 +6,11 @@
 
 Blit::Blit()
 {
-	m_page = m_left = m_top = 0;
+	m_page = 0;
 }
 
-Blit::Blit(int page, int left, int bottom)
+Blit::Blit(int page, int left, int top)
 {
 	m_page = page;
-	m_left = left;
-	m_top = bottom;
+	m_position = QPoint(left, top);
 }

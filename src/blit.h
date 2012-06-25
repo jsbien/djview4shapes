@@ -5,18 +5,21 @@
 #ifndef BLIT_H
 #define BLIT_H
 
+#include <QtCore>
+
+
 class Blit
 {
 public:
 	Blit();
 	Blit(int page, int left, int top);
 	int page() const {return m_page;}
-	int left() const {return m_left;}
-	int top() const {return m_top;}
+	QPoint position() const {return m_position;}
+	int left() const {return m_position.x();}
+	int top() const {return m_position.y();}
 private:
 	int m_page;
-	int m_left;
-	int m_top;
+	QPoint m_position;
 };
 
 #endif // BLIT_H
