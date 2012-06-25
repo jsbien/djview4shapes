@@ -28,6 +28,8 @@ public:
 	ShapeNode* nodeAt(const QModelIndex& index) const;
 	/** Set list of selected items. */
 	void selectItems(const ShapeList& list);
+	/** @return list of selected items. */
+	ShapeList selectedItems() const;
 
 private:
 	int m_columns;

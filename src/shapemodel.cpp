@@ -74,3 +74,11 @@ void ShapeModel::selectItems(const ShapeList &list)
 				emit dataChanged(i, i);
 		}
 }
+
+ShapeList ShapeModel::selectedItems() const
+{
+	ShapeList items;
+	foreach (ShapeNode* node, m_selectedItems)
+		items.append(node);
+	return items;
+}
