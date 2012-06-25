@@ -25,18 +25,16 @@ int ShapeModel::columnCount(const QModelIndex &parent) const
 
 QVariant ShapeModel::data(const QModelIndex &index, int role) const
 {
-	if (!index.isValid())
-		return QVariant();
-	int i = index.row() * m_columns + index.column();
-	if (i >= m_shapes->count())
+	ShapeNode* node = nodeAt(index);
+	if (!node)
 		return QVariant();
 	switch (role) {
 	case Qt::DecorationRole:
-		return m_shapes->at(i)->scaledPixmap(QSize(30, 30));
+		return node->scaledPixmap(QSize(30, 30));
 	case Qt::ToolTipRole:
-		return m_shapes->at(i)->toolTip();
+		return node->toolTip();
 	default:
-		return QVariant();
+		break;
 	}
 	return QVariant();
 }
@@ -45,4 +43,14 @@ void ShapeModel::setColumnCount(int columns)
 {
 	m_columns = columns;
 	reset();
+}
+
+ShapeNode *ShapeModel::nodeAt(const QModelIndex &index) const
+{
+	if (!index.isValid())
+		return 0;
+	int i = index.row() * m_columns + index.column();
+	if (i >= m_shapes->count())
+		return 0;
+	return m_shapes->at(i);
 }
