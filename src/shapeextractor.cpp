@@ -37,16 +37,19 @@ int ShapeExtractor::pages() const
 
 ShapeList ShapeExtractor::extract(ShapeNode *root)
 {
+	return extract(root, 0, qMin(30, pages()));
+}
+
+ShapeList ShapeExtractor::extract(ShapeNode *root, int firstPage, int pageCount)
+{
 	ShapeList shapes;
 	if (!m_document)
 		return shapes;
-
 	QTime elapsed;
 	elapsed.start();
-	int pageCount = qMin(50, pages());
 	emit progress(0);
 	for (int page = 0; page < pageCount; page++) {
-		shapes.append(extractPage(page, root));
+		shapes.append(extractPage(firstPage + page, root));
 		emit progress((page + 1) * 100 / pageCount);
 	}
 	qDebug("Time elapsed: %f", elapsed.elapsed() / 1000.0);

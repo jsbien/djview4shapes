@@ -17,6 +17,7 @@ public:
 	int pages() const;
 	void close() {m_document = 0;}
 	ShapeList extract(ShapeNode* root);
+	ShapeList extract(ShapeNode* root, int firstPage, int pageCount);
 signals:
 	void progress(int percentage);
 private:

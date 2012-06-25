@@ -26,7 +26,7 @@ void ShapesWidget::open(QDjVuDocument *document)
 	connect(&extractor, SIGNAL(progress(int)), this, SIGNAL(progress(int)));
 
 	extractor.open(document);
-	m_shapes = extractor.extract(m_rootShape);
+	m_shapes = extractor.extract(m_rootShape, 0, 1);
 	extractor.close();
 
 	m_shapes.sort(ShapeList::SortByPreorder, m_rootShape);
