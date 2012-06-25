@@ -21,6 +21,9 @@ public:
 	void close();
 signals:
 	void progress(int percentage);
+	void showOccurences(ShapeNode* node);
+private slots:
+	void onClicked(const QModelIndex& index);
 private:
 	ShapeList m_shapes;
 	ShapeNode* m_rootShape;

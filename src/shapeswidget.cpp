@@ -12,12 +12,14 @@ ShapesWidget::ShapesWidget(QWidget *parent) :
 {
 	m_rootShape = new ShapeNode();
 	m_model = new ShapeModel(&m_shapes, this);
+
+	connect(this, SIGNAL(clicked(QModelIndex)), this, SLOT(onClicked(QModelIndex)));
 }
 
 ShapesWidget::~ShapesWidget()
 {
+	close();
 	delete m_rootShape;
-	qDeleteAll(m_shapes);
 }
 
 void ShapesWidget::open(QDjVuDocument *document)
@@ -35,4 +37,12 @@ void ShapesWidget::open(QDjVuDocument *document)
 
 void ShapesWidget::close()
 {
+	qDeleteAll(m_shapes);
+	m_shapes.clear();
+}
+
+void ShapesWidget::onClicked(const QModelIndex &index)
+{
+	if (ShapeNode* node = m_model->nodeAt(index))
+		emit showOccurences(node);
 }
