@@ -9,6 +9,7 @@
 
 class ShapeNode;
 
+
 class ShapeList : public QList<ShapeNode*>
 {
 public:

@@ -39,6 +39,24 @@ int ShapeNode::childrenCount(bool recursive) const
 	return sum;
 }
 
+ShapeList ShapeNode::shapes(ShapeNode::ShapeSelection selection)
+{
+	ShapeList selected;
+	ShapeNode* node;
+
+	switch (selection) {
+	case SingleShape:
+		selected.append(this);
+		break;
+	case ShapeDescendants:
+		selected.append(this);
+		foreach (node, m_children)
+			selected.append(node->shapes(selection));
+		break;
+	}
+	return selected;
+}
+
 ShapeList ShapeNode::siblings() const
 {
 	 if (m_parent) {

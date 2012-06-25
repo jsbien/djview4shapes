@@ -20,37 +20,42 @@
 #include "blit.h"
 #include "shapelist.h"
 
+
 class ShapeNode
 {
 public:
-	 ShapeNode(ShapeNode *m_parent, QPixmap pixmap);
-	 ShapeNode() : m_parent(0) {}
-	 /** @return current pixmap. */
-	 const QPixmap& pixmap() { return m_pixmap; }
-	 /** @return the pixmap of shape scaled to at most @p maxsize. */
-	 QPixmap scaledPixmap(const QSize& maxSize) const;
-	 /** @return the list of children. */
-	 ShapeList children() const {return m_children;}
-	 /** @return number of children. */
-	 int childrenCount(bool recursive = true) const;
-	 /** @return the list of all other children of the same parent. */
-	 ShapeList siblings() const;
-	 /** @return distance to root. */
-	 int depth() const;
-	 /** @return basic information about the node. */
-	 QString toolTip() const;
+	enum ShapeSelection {SingleShape, ShapeDescendants};
 
-	 // Blits
-	 const QList<Blit>& blits() { return m_blits; }
-	 void addBlit(const Blit& blit);
-	 static bool widerThan(ShapeNode * n1, ShapeNode *n2);
+	ShapeNode(ShapeNode *m_parent, QPixmap pixmap);
+	ShapeNode() : m_parent(0) {}
+	/** @return current pixmap. */
+	const QPixmap& pixmap() { return m_pixmap; }
+	/** @return the pixmap of shape scaled to at most @p maxsize. */
+	QPixmap scaledPixmap(const QSize& maxSize) const;
+	/** @return the list of children. */
+	ShapeList children() const {return m_children;}
+	/** @return number of children. */
+	int childrenCount(bool recursive = true) const;
+	/** @return shapes selected by given criteria. */
+	ShapeList shapes(ShapeSelection selection);
+	/** @return the list of all other children of the same parent. */
+	ShapeList siblings() const;
+	/** @return distance to root. */
+	int depth() const;
+	/** @return basic information about the node. */
+	QString toolTip() const;
+
+	// Blits
+	const QList<Blit>& blits() { return m_blits; }
+	void addBlit(const Blit& blit);
+	static bool widerThan(ShapeNode * n1, ShapeNode *n2);
 private:
-	 ShapeNode *m_parent;
-	 ShapeList m_children;
-	 QPixmap m_pixmap;
-	 QList<Blit> m_blits;
+	ShapeNode *m_parent;
+	ShapeList m_children;
+	QPixmap m_pixmap;
+	QList<Blit> m_blits;
 
-	 Q_DECLARE_TR_FUNCTIONS(ShapeNode)
+	Q_DECLARE_TR_FUNCTIONS(ShapeNode)
 };
 
 #endif // SHAPENODE_H

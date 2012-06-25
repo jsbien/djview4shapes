@@ -17,15 +17,16 @@ void ShapeDocument::showOccurences(ShapeNode *node)
 	for (int i = 0; i < 100; i++)
 		clearHighlights(i);
 
-	foreach (Blit blit, node->blits()) {
-		QDjVuWidget::Position pos;
-		pos.pageNo = blit.page();
-		pos.inPage = true;
-		pos.doPage = true;
-		pos.posPage = blit.position();
-		addHighlight(pos.pageNo, blit.left(), blit.top(), node->pixmap().width(),
-						 node->pixmap().height(), color);
-	}
 
-
+	ShapeList list = node->shapes(ShapeNode::ShapeDescendants);
+	foreach (ShapeNode* node, list)
+		foreach (Blit blit, node->blits()) {
+			QDjVuWidget::Position pos;
+			pos.pageNo = blit.page();
+			pos.inPage = true;
+			pos.doPage = true;
+			pos.posPage = blit.position();
+			addHighlight(pos.pageNo, blit.left(), blit.top(), node->pixmap().width(),
+							 node->pixmap().height(), color);
+		}
 }
