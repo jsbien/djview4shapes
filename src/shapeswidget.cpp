@@ -43,6 +43,8 @@ void ShapesWidget::close()
 
 void ShapesWidget::onClicked(const QModelIndex &index)
 {
-	if (ShapeNode* node = m_model->nodeAt(index))
+	if (ShapeNode* node = m_model->nodeAt(index)) {
+		m_model->selectItems(node->shapes(ShapeNode::ShapeDescendants));
 		emit showOccurences(node);
+	}
 }

@@ -26,9 +26,13 @@ public:
 	void setColumnCount(int columns);
 	/** @return a shape at given index or 0 if there is no such index. */
 	ShapeNode* nodeAt(const QModelIndex& index) const;
+	/** Set list of selected items. */
+	void selectItems(const ShapeList& list);
+
 private:
 	int m_columns;
 	ShapeList* m_shapes;
+	QSet<ShapeNode*> m_selectedItems;
 };
 
 #endif // SHAPEMODEL_H

@@ -33,6 +33,10 @@ QVariant ShapeModel::data(const QModelIndex &index, int role) const
 		return node->scaledPixmap(QSize(30, 30));
 	case Qt::ToolTipRole:
 		return node->toolTip();
+	case Qt::BackgroundRole:
+		if (m_selectedItems.contains(node))
+			return Qt::yellow;
+		else return QVariant();
 	default:
 		break;
 	}
@@ -53,4 +57,13 @@ ShapeNode *ShapeModel::nodeAt(const QModelIndex &index) const
 	if (i >= m_shapes->count())
 		return 0;
 	return m_shapes->at(i);
+}
+
+void ShapeModel::selectItems(const ShapeList &list)
+{
+	beginResetModel();
+	m_selectedItems.clear();
+	for (int i = 0; i < list.count(); i++)
+		m_selectedItems.insert(list[i]);
+	endResetModel();
 }
