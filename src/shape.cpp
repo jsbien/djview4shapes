@@ -30,6 +30,15 @@ QPixmap ShapeNode::scaledPixmap(const QSize& maxSize) const
 	else return m_pixmap;
 }
 
+int ShapeNode::childrenCount(bool recursive) const
+{
+	int sum = m_children.count();
+	if (recursive)
+		for (int i = 0; i < m_children.count(); i++)
+			sum += m_children[i]->childrenCount(true);
+	return sum;
+}
+
 ShapeList ShapeNode::siblings() const
 {
 	 if (m_parent) {
@@ -50,8 +59,8 @@ int ShapeNode::depth() const
 
 QString ShapeNode::toolTip() const
 {
-	return tr("Depth: %1\nChildren: %2\nSiblings: %3\nOccurences: %4").arg(depth())
-			.arg(m_children.count()).arg(siblings().count()).arg(m_blits.count());
+	return tr("Depth: %1\nDescendants: %2\nSiblings: %3\nOccurences: %4").arg(depth())
+			.arg(childrenCount(true)).arg(siblings().count()).arg(m_blits.count());
 }
 
 void ShapeNode::addBlit(const Blit &blit)

@@ -31,6 +31,8 @@ public:
 	 QPixmap scaledPixmap(const QSize& maxSize) const;
 	 /** @return the list of children. */
 	 ShapeList children() const {return m_children;}
+	 /** @return number of children. */
+	 int childrenCount(bool recursive = true) const;
 	 /** @return the list of all other children of the same parent. */
 	 ShapeList siblings() const;
 	 /** @return distance to root. */

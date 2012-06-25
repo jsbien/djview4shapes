@@ -6,9 +6,7 @@
 #define SHAPEMODEL_H
 
 #include <QtCore>
-
-class ShapeList;
-class ShapeNode;
+#include "shape.h"
 
 class ShapeModel : public QAbstractTableModel
 {
