@@ -106,6 +106,22 @@ void MainWindow::progress(int percentage)
 	ui.progressBar->setVisible(percentage < 100);
 }
 
+void MainWindow::exportPixmaps()
+{
+	QString saveFile = MessageDialog::saveFile(tr("Images (*.png)"), tr("Base image name"), "export");
+	if (saveFile.isEmpty())
+		return;
+
+	int extension = saveFile.lastIndexOf('.');
+	if (extension != -1)
+		saveFile = saveFile.left(extension);
+	saveFile.append("-%1.png");
+
+	ShapeList items = ui.shapeWidget->selectedOccurences();
+	for (int i = 0; i < items.count(); i++)
+		items.at(i)->pixmap().save(saveFile.arg(i+1));
+}
+
 
 
 void MainWindow::setupActions()
@@ -122,6 +138,11 @@ void MainWindow::setupActions()
 	// Help menu
 	connect(ui.actionHelpAbout, SIGNAL(triggered()), this,
 			  SLOT(showAboutDialog()));
+
+	// Shape widget menu
+	QAction* exportAction = new QAction(tr("Export images"), this);
+	connect(exportAction, SIGNAL(triggered()), this, SLOT(exportPixmaps()));
+	ui.shapeWidget->addAction(exportAction);
 }
 
 

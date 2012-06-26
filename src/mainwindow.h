@@ -37,6 +37,8 @@ private slots:
 	void documentLoaded();
 	/** Show progress. */
 	void progress(int percentage);
+	/** Export selected pixmaps. */
+	void exportPixmaps();
 protected:
 	 /** Confirm quitting. */
 	 void closeEvent(QCloseEvent* event);
