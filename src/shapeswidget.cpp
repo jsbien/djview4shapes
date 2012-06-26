@@ -48,3 +48,18 @@ void ShapesWidget::onClicked(const QModelIndex &index)
 		emit showOccurences(node);
 	}
 }
+
+void ShapesWidget::onResized()
+{
+}
+
+ShapeList ShapesWidget::selectedOccurences() const
+{
+	return m_model->selectedItems();
+}
+
+void ShapesWidget::resizeEvent(QResizeEvent *event)
+{
+	m_model->setColumnCount((width() - 20) / 30);
+	QTableView::resizeEvent(event);
+}

@@ -19,11 +19,15 @@ public:
 	~ShapesWidget();
 	void open(QDjVuDocument* document);
 	void close();
+	ShapeList selectedOccurences() const;
+protected:
+	void resizeEvent(QResizeEvent *event);
 signals:
 	void progress(int percentage);
 	void showOccurences(ShapeNode* node);
 private slots:
 	void onClicked(const QModelIndex& index);
+	void onResized();
 private:
 	ShapeList m_shapes;
 	ShapeNode* m_rootShape;
