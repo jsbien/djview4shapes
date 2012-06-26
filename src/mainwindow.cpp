@@ -69,6 +69,7 @@ void MainWindow::restoreSettings()
 	QSettings settings;
 	settings.beginGroup("MainWindow");
 	resize(settings.value("size", size()).toSize());
+	ui.splitter->restoreState(settings.value("splitter").toByteArray());
 	settings.endGroup();
 }
 
@@ -77,6 +78,7 @@ void MainWindow::saveSettings()
 	QSettings settings;
 	settings.beginGroup("MainWindow");
 	settings.setValue("size", size());
+	settings.setValue("splitter", ui.splitter->saveState());
 	settings.endGroup();
 }
 
