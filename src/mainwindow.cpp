@@ -35,6 +35,8 @@ MainWindow::MainWindow(QWidget *parent) :
 			  SLOT(showOccurences(ShapeNode*)));
 	connect(ui.shapeWidget, SIGNAL(showOccurences(ShapeNode*)), ui.previewWidget,
 			  SLOT(setItems(ShapeNode*)));
+	connect(ui.previewWidget, SIGNAL(pageRequested(int)), ui.djvuWidget,
+			  SLOT(setPage(int)));
 
 	show();
 	restoreSettings();
