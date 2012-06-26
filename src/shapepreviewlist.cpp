@@ -30,6 +30,7 @@ void ShapePreviewList::setItems(ShapeNode *node)
 	foreach (ShapeNode* item, list)
 		foreach (Blit blit, item->blits())
 			addItem(item, blit);
+	m_layout->setRowStretch(m_items.count(), 100);
 }
 
 void ShapePreviewList::clear()
