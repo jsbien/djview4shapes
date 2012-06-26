@@ -13,6 +13,7 @@ class Blit
 public:
 	Blit();
 	Blit(int page, int left, int top);
+	bool isValid() const {return m_page >= 0;}
 	int page() const {return m_page;}
 	QPoint position() const {return m_position;}
 	int left() const {return m_position.x();}

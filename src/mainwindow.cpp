@@ -33,6 +33,8 @@ MainWindow::MainWindow(QWidget *parent) :
 	connect(ui.shapeWidget, SIGNAL(progress(int)), this, SLOT(progress(int)));
 	connect(ui.shapeWidget, SIGNAL(showOccurences(ShapeNode*)), ui.djvuWidget,
 			  SLOT(showOccurences(ShapeNode*)));
+	connect(ui.shapeWidget, SIGNAL(showOccurences(ShapeNode*)), ui.previewWidget,
+			  SLOT(setItems(ShapeNode*)));
 
 	show();
 	restoreSettings();
@@ -91,6 +93,7 @@ void MainWindow::documentLoaded()
 {
 	ui.djvuWidget->setDocument(m_document);
 	ui.shapeWidget->open(m_document);
+	ui.previewWidget->setDocument(m_document);
 }
 
 void MainWindow::progress(int percentage)
