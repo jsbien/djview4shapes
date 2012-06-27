@@ -43,8 +43,11 @@ ShapeList ShapeExtractor::extract(ShapeNode *root)
 ShapeList ShapeExtractor::extract(ShapeNode *root, int firstPage, int pageCount)
 {
 	ShapeList shapes;
+
 	if (!m_document)
 		return shapes;
+
+	m_pixmaps.clear();
 	QTime elapsed;
 	elapsed.start();
 	emit progress(0);
@@ -58,29 +61,30 @@ ShapeList ShapeExtractor::extract(ShapeNode *root, int firstPage, int pageCount)
 
 ShapeList ShapeExtractor::extractPage(int pageno, ShapeNode *root)
 {
-	ShapeList shapes;
+	ShapeList pageShapes;
+	ShapeList newShapes;
 
 	struct DJVU::ddjvu_page_s* page = reinterpret_cast<DJVU::ddjvu_page_s *>(
 				ddjvu_page_create_by_pageno(*m_document, pageno));
 
 	if (!page) {
 		qWarning("Cound not render djvupage, page %d", pageno);
-		return shapes;
+		return pageShapes;
 	}
 
 	GP<DjVuImage> img = ddjvu_get_DjVuImage(page);
 	if (!img) {
 		qWarning("Cound not render djvuimage, page %d", pageno);
-		return shapes;
+		return pageShapes;
 	}
 
 	if (!img->wait_for_complete_decode())
-		return shapes;
+		return pageShapes;
 
 	GP<JB2Image> jimg = img->get_fgjb();
 	if (!jimg) {
 		qWarning("Cound not get fbjb, page %d", pageno);
-		return shapes;
+		return pageShapes;
 	}
 
 	int shared = 0;
@@ -90,8 +94,8 @@ ShapeList ShapeExtractor::extractPage(int pageno, ShapeNode *root)
 		JB2Shape shape = jimg->get_shape(i);
 
 		ShapeNode* parent = root;
-		if (shape.parent >= 0 && shape.parent < shapes.count())
-			parent = shapes[shape.parent];
+		if (shape.parent >= 0 && shape.parent < pageShapes.count())
+			parent = pageShapes[shape.parent];
 
 		GP<GBitmap> bits = shape.bits;
 		if (!bits)
@@ -103,24 +107,32 @@ ShapeList ShapeExtractor::extractPage(int pageno, ShapeNode *root)
 		QPixmap pixmap;
 		pixmap.loadFromData(reinterpret_cast<const uchar*>((char*)array), array.size());
 		pixmap.setMask(pixmap.createMaskFromColor(Qt::white, Qt::MaskInColor)); //add transparency
-		shapes.append(new ShapeNode(parent, pixmap));
 
-		QByteArray pattern(reinterpret_cast<const char*>((char*)array));
-		if (m_pixmaps.contains(pattern))
+		// Look for existing pixmaps
+		QByteArray pattern(reinterpret_cast<const char*>((char*)array), array.size());
+		if (m_pixmaps.contains(pattern)) {
 			shared++;
-		else m_pixmaps.insert(pattern, pageno);
+			pageShapes.append(m_pixmaps[pattern]);
+		}
+		else {
+			ShapeNode* newShape = new ShapeNode(parent, pixmap);
+			newShapes.append(newShape);
+			pageShapes.append(newShape);
+			m_pixmaps.insert(pattern, newShape);
+		}
 	}
 
 	// now put blits
 	int blitCount = jimg->get_blit_count();
 	for (int i = 0; i < blitCount; i++) {
 		JB2Blit *blit = jimg->get_blit(i);
-		if (blit && int(blit->shapeno) < shapes.count())
-			shapes[blit->shapeno]->addBlit(Blit(pageno, blit->left, blit->bottom));
+		if (blit && int(blit->shapeno) < pageShapes.count())
+			pageShapes[blit->shapeno]->addBlit(Blit(pageno, blit->left, blit->bottom));
 	}
 
-	qDebug("%d images of %d shared on page %d", shared, shapesCount, pageno);
-	return shapes;
+	qDebug("%d images on page %d: %d shared, %d new", shapesCount, pageno,
+			 shared, newShapes.count());
+	return newShapes;
 }
 
 
