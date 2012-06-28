@@ -81,6 +81,13 @@ QString ShapeNode::toolTip() const
 			.arg(childrenCount(true)).arg(siblings().count()).arg(m_blits.count());
 }
 
+void ShapeNode::clear()
+{
+	m_children.clear();
+	m_blits.clear();
+	m_parent = 0;
+}
+
 void ShapeNode::addBlit(const Blit &blit)
 {
 	 m_blits.append(blit);

@@ -24,6 +24,8 @@ ShapesWidget::~ShapesWidget()
 
 void ShapesWidget::open(QDjVuDocument *document)
 {
+	close();
+
 	ShapeExtractor extractor;
 	connect(&extractor, SIGNAL(progress(int)), this, SIGNAL(progress(int)));
 
@@ -39,6 +41,7 @@ void ShapesWidget::close()
 {
 	qDeleteAll(m_shapes);
 	m_shapes.clear();
+	m_rootShape->clear();
 }
 
 void ShapesWidget::onClicked(const QModelIndex &index)

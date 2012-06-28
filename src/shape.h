@@ -44,6 +44,8 @@ public:
 	int depth() const;
 	/** @return basic information about the node. */
 	QString toolTip() const;
+	/** Clear all data. */
+	void clear();
 
 	// Blits
 	const QList<Blit>& blits() { return m_blits; }
