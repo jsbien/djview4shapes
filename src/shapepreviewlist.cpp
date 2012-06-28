@@ -6,7 +6,7 @@
 #include "qdjvuwidget.h"
 
 ShapePreviewList::ShapePreviewList(QWidget *parent) :
-	 QScrollArea(parent)
+	QScrollArea(parent)
 {
 	QWidget* main = new QWidget;
 	main->setLayout(m_layout = new QGridLayout);
@@ -35,15 +35,14 @@ void ShapePreviewList::setItems(ShapeNode *node)
 
 void ShapePreviewList::clear()
 {
-	 for (int i = 0; i < m_items.count(); i++) {
-		  m_layout->removeWidget(m_items[i].label);
-		  m_layout->removeWidget(m_items[i].djvu);
-		  m_items[i].label->deleteLater();
-		  m_items[i].djvu->setDocument(0);
-		  m_items[i].djvu->deleteLater();
-	 }
-	 m_items.clear();
-	 m_currentItem = -1;
+	m_layout->setRowStretch(m_items.count(), 0);
+	for (int i = 0; i < m_items.count(); i++) {
+		m_items[i].label->deleteLater();
+		m_items[i].djvu->setDocument(0);
+		m_items[i].djvu->deleteLater();
+	}
+	m_items.clear();
+	m_currentItem = -1;
 }
 
 void ShapePreviewList::setCurrentIndex(int index)
