@@ -127,7 +127,8 @@ ShapeList ShapeExtractor::extractPage(int pageno, ShapeNode *root)
 	for (int i = 0; i < blitCount; i++) {
 		JB2Blit *blit = jimg->get_blit(i);
 		if (blit && int(blit->shapeno) < pageShapes.count())
-			pageShapes[blit->shapeno]->addBlit(Blit(pageno, blit->left, blit->bottom));
+			pageShapes[blit->shapeno]->addBlit(Blit(pageno, blit->left, blit->bottom,
+																 pageShapes[blit->shapeno]->size()));
 	}
 
 	qDebug("%d images on page %d: %d shared, %d new", shapesCount, pageno,

@@ -46,6 +46,8 @@ public:
 	QString toolTip() const;
 	/** Clear all data. */
 	void clear();
+	/** @return size of the shape. */
+	QSize size() const {return m_pixmap.size();}
 
 	// Blits
 	const QList<Blit>& blits() { return m_blits; }

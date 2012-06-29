@@ -7,16 +7,20 @@
 
 #include "qdjvuwidget.h"
 
+class Blit;
 class ShapeNode;
+class ShapeList;
 
 class ShapeDocument : public QDjVuWidget
 {
 	Q_OBJECT
 public:
 	explicit ShapeDocument(QWidget* parent = 0);
+	void clearAllHighlights();
 public slots:
-	void showOccurences(ShapeNode* node);
-
+	void showOccurences(const ShapeList& nodes);
+private:
+	void showBlit(const Blit& blit);
 };
 
 #endif // SHAPEDOCUMENT_H

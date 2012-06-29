@@ -13,7 +13,10 @@ ShapesWidget::ShapesWidget(QWidget *parent) :
 	m_rootShape = new ShapeNode();
 	m_model = new ShapeModel(&m_shapes, this);
 
-	connect(this, SIGNAL(clicked(QModelIndex)), this, SLOT(onClicked(QModelIndex)));
+	connect(this, SIGNAL(clicked(QModelIndex)), this,
+			  SLOT(onClicked(QModelIndex)));
+	connect(this, SIGNAL(doubleClicked(QModelIndex)), this,
+			  SLOT(onDoubleClicked(QModelIndex)));
 }
 
 ShapesWidget::~ShapesWidget()
@@ -47,13 +50,24 @@ void ShapesWidget::close()
 void ShapesWidget::onClicked(const QModelIndex &index)
 {
 	if (ShapeNode* node = m_model->nodeAt(index)) {
-		m_model->selectItems(node->shapes(ShapeNode::ShapeDescendants));
-		emit showOccurences(node);
+		ShapeList nodes;
+		nodes.append(node);
+		if (m_model->selectedItems() == nodes)
+			onDoubleClicked(index);
+		else {
+			 m_model->selectItems(nodes);
+			 emit showOccurences(nodes);
+		}
 	}
 }
 
-void ShapesWidget::onResized()
+void ShapesWidget::onDoubleClicked(const QModelIndex &index)
 {
+	if (ShapeNode* node = m_model->nodeAt(index)) {
+		ShapeList nodes = node->shapes(ShapeNode::ShapeDescendants);
+		m_model->selectItems(nodes);
+		emit showOccurences(nodes);
+	}
 }
 
 ShapeList ShapesWidget::selectedOccurences() const

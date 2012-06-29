@@ -19,7 +19,7 @@ public:
 	int count() const   {return m_items.count();}
 	int currentIndex() const {return m_currentItem;}
 public slots:
-	void setItems(ShapeNode* node);
+	void showItems(const ShapeList& nodes);
 	void setCurrentIndex(int index);
 	void configure();
 private slots:

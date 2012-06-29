@@ -9,24 +9,30 @@ ShapeDocument::ShapeDocument(QWidget *parent) : QDjVuWidget(parent)
 {
 }
 
-void ShapeDocument::showOccurences(ShapeNode *node)
+void ShapeDocument::clearAllHighlights()
+{
+	for (int i = 0; i < 1000; i++)
+		clearHighlights(i);
+
+}
+
+void ShapeDocument::showOccurences(const ShapeList& nodes)
+{
+	clearAllHighlights();
+	foreach (ShapeNode* node, nodes)
+		foreach (Blit blit, node->blits())
+			showBlit(blit);
+}
+
+void ShapeDocument::showBlit(const Blit &blit)
 {
 	QColor color(QSettings().value("Display/highlight", "#ffff00").toString());
 	color.setAlpha(128);
-
-	for (int i = 0; i < 100; i++)
-		clearHighlights(i);
-
-
-	ShapeList list = node->shapes(ShapeNode::ShapeDescendants);
-	foreach (ShapeNode* node, list)
-		foreach (Blit blit, node->blits()) {
-			QDjVuWidget::Position pos;
-			pos.pageNo = blit.page();
-			pos.inPage = true;
-			pos.doPage = true;
-			pos.posPage = blit.position();
-			addHighlight(pos.pageNo, blit.left(), blit.top(), node->pixmap().width(),
-							 node->pixmap().height(), color);
-		}
+	QDjVuWidget::Position pos;
+	pos.pageNo = blit.page();
+	pos.inPage = true;
+	pos.doPage = true;
+	pos.posPage = blit.position();
+	addHighlight(pos.pageNo, blit.left(), blit.top(), blit.size().width(),
+					 blit.size().height(), color);
 }

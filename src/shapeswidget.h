@@ -24,10 +24,10 @@ protected:
 	void resizeEvent(QResizeEvent *event);
 signals:
 	void progress(int percentage);
-	void showOccurences(ShapeNode* node);
+	void showOccurences(const ShapeList& nodes);
 private slots:
 	void onClicked(const QModelIndex& index);
-	void onResized();
+	void onDoubleClicked(const QModelIndex& index);
 private:
 	ShapeList m_shapes;
 	ShapeNode* m_rootShape;

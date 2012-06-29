@@ -23,15 +23,15 @@ void ShapePreviewList::setDocument(QDjVuDocument *document)
 	clear();
 }
 
-void ShapePreviewList::setItems(ShapeNode *node)
+void ShapePreviewList::showItems(const ShapeList &nodes)
 {
 	clear();
-	ShapeList list = node->shapes(ShapeNode::ShapeDescendants);
-	foreach (ShapeNode* item, list)
+	foreach (ShapeNode* item, nodes)
 		foreach (Blit blit, item->blits())
 			addItem(item, blit);
 	m_layout->setRowStretch(m_items.count(), 100);
 }
+
 
 void ShapePreviewList::clear()
 {

@@ -12,15 +12,17 @@ class Blit
 {
 public:
 	Blit();
-	Blit(int page, int left, int top);
-	bool isValid() const {return m_page >= 0;}
+	Blit(int page, int left, int top, const QSize& size);
+	bool isValid() const {return m_page >= 0 && m_rect.width() > 0;}
 	int page() const {return m_page;}
-	QPoint position() const {return m_position;}
-	int left() const {return m_position.x();}
-	int top() const {return m_position.y();}
+	QPoint position() const {return m_rect.topLeft();}
+	int left() const {return m_rect.x();}
+	int top() const {return m_rect.y();}
+	QSize size() const {return m_rect.size();}
+	QRect rect() const {return m_rect;}
 private:
 	int m_page;
-	QPoint m_position;
+	QRect m_rect;
 };
 
 #endif // BLIT_H

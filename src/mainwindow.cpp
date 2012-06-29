@@ -32,10 +32,10 @@ MainWindow::MainWindow(QWidget *parent) :
 	setWindowTitle(m_applicationName);
 
 	connect(ui.shapeWidget, SIGNAL(progress(int)), this, SLOT(progress(int)));
-	connect(ui.shapeWidget, SIGNAL(showOccurences(ShapeNode*)), ui.djvuWidget,
-			  SLOT(showOccurences(ShapeNode*)));
-	connect(ui.shapeWidget, SIGNAL(showOccurences(ShapeNode*)), ui.previewWidget,
-			  SLOT(setItems(ShapeNode*)));
+	connect(ui.shapeWidget, SIGNAL(showOccurences(ShapeList)), ui.djvuWidget,
+			  SLOT(showOccurences(ShapeList)));
+	connect(ui.shapeWidget, SIGNAL(showOccurences(ShapeList)), ui.previewWidget,
+			  SLOT(showItems(ShapeList)));
 	connect(ui.previewWidget, SIGNAL(pageRequested(int)), ui.djvuWidget,
 			  SLOT(setPage(int)));
 
