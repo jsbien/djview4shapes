@@ -18,8 +18,12 @@ public:
 	QPoint position() const {return m_rect.topLeft();}
 	int left() const {return m_rect.x();}
 	int top() const {return m_rect.y();}
+	int width() const {return m_rect.width();}
+	int height() const {return m_rect.height();}
 	QSize size() const {return m_rect.size();}
 	QRect rect() const {return m_rect;}
+	/** @return link for DjView. */
+	QString link() const;
 private:
 	int m_page;
 	QRect m_rect;

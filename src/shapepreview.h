@@ -29,6 +29,7 @@ protected:
 signals:
 	void activated();
 	void pageRequested(int page);
+	void documentRequested(const Blit& blit);
 private:
 	Blit m_blit;
 	QVariant m_data;

@@ -12,6 +12,7 @@
 *   GNU General Public License for more details.
 ****************************************************************************/
 
+#include "blit.h"
 #include "mainwindow.h"
 #include "messagedialog.h"
 #include "qdjvu.h"
@@ -38,6 +39,8 @@ MainWindow::MainWindow(QWidget *parent) :
 			  SLOT(showItems(ShapeList)));
 	connect(ui.previewWidget, SIGNAL(pageRequested(int)), ui.djvuWidget,
 			  SLOT(setPage(int)));
+	connect(ui.previewWidget, SIGNAL(documentRequested(Blit)), this,
+			  SLOT(launchDjview(Blit)));
 
 	show();
 	restoreSettings();
@@ -52,7 +55,7 @@ void MainWindow::openFile(const QString &filename)
 	m_document = new QDjVuDocument(this);
 	connect(m_document, SIGNAL(docinfo()), this, SLOT(documentLoaded()));
 	m_document->setFileName(m_context, filename);
-	m_recentFiles.addFile(filename);
+	m_recentFiles.addFile(m_filename = filename);
 }
 
 void MainWindow::closeEvent(QCloseEvent* event)
@@ -128,6 +131,18 @@ void MainWindow::configure()
 	PreferencesDialog dlg(this);
 	if (dlg.exec())
 		dlg.saveSettings();
+}
+
+void MainWindow::launchDjview(const Blit &blit)
+{
+	QString cmd = QSettings().value("Tools/djviewPath", "djview").toString();
+	QStringList args;
+	args.append(QString("file://") + m_filename + blit.link());
+	if (!QProcess::startDetached(cmd, args)) {
+		QString msg = tr("Cannot execute program:") + "<br><i>%1</i>";
+		MessageDialog::warning(msg.arg(cmd));
+	}
+
 }
 
 void MainWindow::setupActions()

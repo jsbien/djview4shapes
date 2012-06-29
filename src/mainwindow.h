@@ -18,6 +18,7 @@
 #include "ui_mainwindow.h"
 #include "recentfiles.h"
 
+class Blit;
 class QDjVuContext;
 class QDjVuDocument;
 
@@ -41,6 +42,8 @@ private slots:
 	void exportPixmaps();
 	/** Configure program. */
 	void configure();
+	/** Show blit in external document. */
+	void launchDjview(const Blit& blit);
 protected:
 	 /** Confirm quitting. */
 	 void closeEvent(QCloseEvent* event);
@@ -60,6 +63,7 @@ protected:
 	 RecentFiles m_recentFiles;
 	 QDjVuDocument* m_document;
 	 QDjVuContext* m_context;
+	 QString m_filename;
 };
 
 #endif // MAINWINDOW_H

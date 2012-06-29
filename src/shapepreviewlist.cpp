@@ -90,6 +90,8 @@ void ShapePreviewList::addItem(ShapeNode* node, const Blit &blit)
 	item.djvu->setData(m_items.count());
 	connect(item.djvu, SIGNAL(activated()), this, SLOT(updateCurrentItem()));
 	connect(item.djvu, SIGNAL(pageRequested(int)), this, SIGNAL(pageRequested(int)));
+	connect(item.djvu, SIGNAL(documentRequested(Blit)), this,
+			  SIGNAL(documentRequested(Blit)));
 	item.djvu->setBlit(node, blit);
 
 	m_layout->addWidget(item.label, row, 0);

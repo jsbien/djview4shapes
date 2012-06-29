@@ -54,18 +54,11 @@ void ShapePreview::mouseDoubleClickEvent(QMouseEvent*)
 
 void ShapePreview::mousePressEvent(QMouseEvent *event)
 {
-	/*
 	if (event->button() == Qt::MiddleButton) {
 		event->ignore();
-		QString cmd = QSettings().value("Tools/djviewPath", "djview").toString();
-		QStringList args;
-		args << link().link().toString();
-		if (!QProcess::startDetached(cmd, args)) {
-			QString msg = tr("Cannot execute program:") + "<br><i>%1</i>";
-			MessageDialog::warning(msg.arg(cmd));
-		}
+		emit documentRequested(m_blit);
 	}
-	*/
-	QDjVuWidget::mousePressEvent(event);
+	else QDjVuWidget::mousePressEvent(event);
 }
+
 
