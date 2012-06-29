@@ -37,7 +37,7 @@ int ShapeExtractor::pages() const
 
 ShapeList ShapeExtractor::extract(ShapeNode *root)
 {
-	return extract(root, 0, qMin(30, pages()));
+	return extract(root, 0, qMin(20, pages()));
 }
 
 ShapeList ShapeExtractor::extract(ShapeNode *root, int firstPage, int pageCount)

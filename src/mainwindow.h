@@ -39,6 +39,8 @@ private slots:
 	void progress(int percentage);
 	/** Export selected pixmaps. */
 	void exportPixmaps();
+	/** Configure program. */
+	void configure();
 protected:
 	 /** Confirm quitting. */
 	 void closeEvent(QCloseEvent* event);

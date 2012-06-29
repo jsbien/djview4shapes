@@ -40,7 +40,8 @@ HEADERS += recentfiles.h \
     blit.h \
     shapedocument.h \
     shapepreview.h \
-    shapepreviewlist.h
+    shapepreviewlist.h \
+    preferencesdialog.h
 
 SOURCES += recentfiles.cpp \
 	 mainwindow.cpp \
@@ -58,8 +59,10 @@ SOURCES += recentfiles.cpp \
     blit.cpp \
     shapedocument.cpp \
     shapepreview.cpp \
-    shapepreviewlist.cpp
-FORMS = mainwindow.ui
+    shapepreviewlist.cpp \
+    preferencesdialog.cpp
+FORMS = mainwindow.ui \
+    preferencesdialog.ui
 
 RESOURCES += \
 	 resources.qrc

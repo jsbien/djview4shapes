@@ -20,7 +20,7 @@ ShapePreview::ShapePreview(QWidget *parent) :
 void ShapePreview::setBlit(ShapeNode* node, const Blit &blit)
 {
 	m_blit = blit;
-	QColor color(Qt::cyan);
+	QColor color(QSettings().value("Display/highlight", "#ffff00").toString());
 	color.setAlpha(128);
 
 	QDjVuWidget::Position pos;

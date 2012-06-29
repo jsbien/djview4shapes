@@ -11,7 +11,7 @@ ShapeDocument::ShapeDocument(QWidget *parent) : QDjVuWidget(parent)
 
 void ShapeDocument::showOccurences(ShapeNode *node)
 {
-	QColor color(Qt::cyan);
+	QColor color(QSettings().value("Display/highlight", "#ffff00").toString());
 	color.setAlpha(128);
 
 	for (int i = 0; i < 100; i++)

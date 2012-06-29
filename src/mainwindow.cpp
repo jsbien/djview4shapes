@@ -17,6 +17,7 @@
 #include "qdjvu.h"
 #include "qdjvuhttp.h"
 #include "version.h"
+#include "preferencesdialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent)
@@ -122,7 +123,12 @@ void MainWindow::exportPixmaps()
 		items.at(i)->pixmap().save(saveFile.arg(i+1));
 }
 
-
+void MainWindow::configure()
+{
+	PreferencesDialog dlg(this);
+	if (dlg.exec())
+		dlg.saveSettings();
+}
 
 void MainWindow::setupActions()
 {
@@ -134,6 +140,10 @@ void MainWindow::setupActions()
 			  SLOT(selectFileToOpen()));
 	connect(&m_recentFiles, SIGNAL(selected(QString)), this,
 			  SLOT(openFile(QString)));
+
+	// Settings menu
+	connect(ui.actionConfigure, SIGNAL(triggered()), this,
+			  SLOT(configure()));
 
 	// Help menu
 	connect(ui.actionHelpAbout, SIGNAL(triggered()), this,
