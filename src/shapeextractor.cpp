@@ -37,7 +37,8 @@ int ShapeExtractor::pages() const
 
 ShapeList ShapeExtractor::extract(ShapeNode *root)
 {
-	return extract(root, 0, qMin(20, pages()));
+	int maxPages = QSettings().value("Display/pages", 20).toInt();
+	return extract(root, 0, qMin(maxPages, pages()));
 }
 
 ShapeList ShapeExtractor::extract(ShapeNode *root, int firstPage, int pageCount)
@@ -131,7 +132,7 @@ ShapeList ShapeExtractor::extractPage(int pageno, ShapeNode *root)
 																 pageShapes[blit->shapeno]->size()));
 	}
 
-	qDebug("%d images on page %d: %d shared, %d new", shapesCount, pageno,
+	qDebug("%d images on page %d: %d shared, %d new", shapesCount, pageno+1,
 			 shared, newShapes.count());
 	return newShapes;
 }
