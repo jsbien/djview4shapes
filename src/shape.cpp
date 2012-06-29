@@ -77,8 +77,9 @@ int ShapeNode::depth() const
 
 QString ShapeNode::toolTip() const
 {
-	return tr("Depth: %1\nDescendants: %2\nSiblings: %3\nOccurences: %4").arg(depth())
-			.arg(childrenCount(true)).arg(siblings().count()).arg(m_blits.count());
+	return tr("Depth: %1\nDescendants: %2\nSiblings: %3\nOccurences: %4\nPixmap size: %5x%6")
+			.arg(depth()).arg(childrenCount(true)).arg(siblings().count())
+			.arg(m_blits.count()).arg(size().width()).arg(size().height());
 }
 
 void ShapeNode::clear()
