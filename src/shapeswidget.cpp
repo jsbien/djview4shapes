@@ -77,7 +77,7 @@ ShapeList ShapesWidget::selectedOccurences() const
 
 void ShapesWidget::resizeEvent(QResizeEvent *event)
 {
-	m_model->setColumnCount((width() - 20) / 30);
+	m_model->setColumnCount((width() - 20) / horizontalHeader()->defaultSectionSize());
 	QTableView::resizeEvent(event);
 }
 

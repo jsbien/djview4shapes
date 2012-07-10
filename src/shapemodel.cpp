@@ -30,7 +30,7 @@ QVariant ShapeModel::data(const QModelIndex &index, int role) const
 		return QVariant();
 	switch (role) {
 	case Qt::DecorationRole:
-		return node->scaledPixmap(QSize(30, 30));
+		return node->scaledPixmap(QSize(28, 28));
 	case Qt::ToolTipRole:
 		return node->toolTip();
 	case Qt::BackgroundRole:

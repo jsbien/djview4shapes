@@ -36,7 +36,6 @@ ShapeList ShapeList::find(int page, const QPoint &point) const
 		foreach (Blit blit, at(i)->blits())
 			if (blit.page() == page && blit.rect().contains(point)) {
 				matches.append(at(i));
-				qDebug("Shape %d", i);
 				break;
 			}
 	return matches;

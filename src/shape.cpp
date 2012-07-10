@@ -25,8 +25,8 @@ ShapeNode::ShapeNode(ShapeNode *parent, QPixmap pixmap) :
 
 QPixmap ShapeNode::scaledPixmap(const QSize& maxSize) const
 {
-	if (m_pixmap.width() > maxSize.width() || m_pixmap.height() > maxSize.width())
-		return m_pixmap.scaled(maxSize, Qt::KeepAspectRatio);
+	if (m_pixmap.width() > maxSize.width() || m_pixmap.height() > maxSize.height())
+		return m_pixmap.scaled(maxSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 	else return m_pixmap;
 }
 
