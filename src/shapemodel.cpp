@@ -25,12 +25,14 @@ int ShapeModel::columnCount(const QModelIndex &parent) const
 
 QVariant ShapeModel::data(const QModelIndex &index, int role) const
 {
+	const int Padding = 4;
+
 	ShapeNode* node = nodeAt(index);
 	if (!node)
 		return QVariant();
 	switch (role) {
 	case Qt::DecorationRole:
-		return node->scaledPixmap(QSize(28, 28));
+		return node->scaledPixmap(QSize(30 - 2 * Padding, 30 - 2 * Padding));
 	case Qt::ToolTipRole:
 		return node->toolTip();
 	case Qt::BackgroundRole:
