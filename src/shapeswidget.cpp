@@ -80,3 +80,15 @@ void ShapesWidget::resizeEvent(QResizeEvent *event)
 	m_model->setColumnCount((width() - 20) / 30);
 	QTableView::resizeEvent(event);
 }
+
+void ShapesWidget::findShapes(int page, const QPoint &point)
+{
+	ShapeList found = m_shapes.find(page, point);
+	m_model->selectItems(found);
+	if (!found.isEmpty()) {
+		QModelIndex index = m_model->indexOf(found.first());
+		if (index.isValid())
+			scrollTo(index);
+	}
+	emit showOccurences(found);
+}

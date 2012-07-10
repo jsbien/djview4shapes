@@ -21,6 +21,8 @@ public:
 	int columnCount(const QModelIndex &parent = QModelIndex()) const;
 	/** @return data for given cell. */
 	QVariant data(const QModelIndex &index, int role) const;
+	/** @return index of given shape. */
+	QModelIndex indexOf(ShapeNode* node) const;
 
 	/** Set number of columns. */
 	void setColumnCount(int columns);

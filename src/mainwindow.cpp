@@ -37,11 +37,14 @@ MainWindow::MainWindow(QWidget *parent) :
 			  SLOT(showOccurences(ShapeList)));
 	connect(ui.shapeWidget, SIGNAL(showOccurences(ShapeList)), ui.previewWidget,
 			  SLOT(showItems(ShapeList)));
+
 	connect(ui.previewWidget, SIGNAL(pageRequested(int)), ui.djvuWidget,
 			  SLOT(setPage(int)));
 	connect(ui.previewWidget, SIGNAL(documentRequested(Blit)), this,
 			  SLOT(launchDjview(Blit)));
 
+	connect(ui.djvuWidget, SIGNAL(clicked(int,QPoint)), ui.shapeWidget,
+			 SLOT(findShapes(int,QPoint)));
 	show();
 	restoreSettings();
 }

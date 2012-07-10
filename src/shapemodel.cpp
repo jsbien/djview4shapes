@@ -43,6 +43,14 @@ QVariant ShapeModel::data(const QModelIndex &index, int role) const
 	return QVariant();
 }
 
+QModelIndex ShapeModel::indexOf(ShapeNode *node) const
+{
+	int position = m_shapes->indexOf(node);
+	if (position == -1)
+		return QModelIndex();
+	else return index(position / columnCount(), position % columnCount());
+}
+
 void ShapeModel::setColumnCount(int columns)
 {
 	m_columns = columns;

@@ -25,6 +25,8 @@ protected:
 signals:
 	void progress(int percentage);
 	void showOccurences(const ShapeList& nodes);
+public slots:
+	void findShapes(int page, const QPoint& point);
 private slots:
 	void onClicked(const QModelIndex& index);
 	void onDoubleClicked(const QModelIndex& index);

@@ -19,6 +19,10 @@ public:
 	void clearAllHighlights();
 public slots:
 	void showOccurences(const ShapeList& nodes);
+protected:
+	void mousePressEvent(QMouseEvent *event);
+signals:
+	void clicked(int page, const QPoint& position);
 private:
 	void showBlit(const Blit& blit);
 };

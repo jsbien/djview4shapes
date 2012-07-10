@@ -17,6 +17,8 @@ public:
 	ShapeList();
 	void sort(SortMethod method, ShapeNode* root);
 	QSize maximumSize() const;
+	/** @return a list of shape containing blit with given point. */
+	ShapeList find(int page, const QPoint& point) const;
 private:
 	void doSort(SortMethod method, ShapeNode* root);
 	void preorderSort(ShapeList* newOrder, ShapeNode* root);

@@ -24,6 +24,15 @@ void ShapeDocument::showOccurences(const ShapeList& nodes)
 			showBlit(blit);
 }
 
+void ShapeDocument::mousePressEvent(QMouseEvent *event)
+{
+	if (event->button() == Qt::LeftButton) {
+		Position pos = position(event->pos());
+		emit clicked(position().pageNo, pos.posPage);
+	}
+	QDjVuWidget::mousePressEvent(event);
+}
+
 void ShapeDocument::showBlit(const Blit &blit)
 {
 	QColor color(QSettings().value("Display/highlight", "#ffff00").toString());

@@ -29,6 +29,19 @@ QSize ShapeList::maximumSize() const
 	return size;
 }
 
+ShapeList ShapeList::find(int page, const QPoint &point) const
+{
+	ShapeList matches;
+	for (int i = 0; i < count(); i++)
+		foreach (Blit blit, at(i)->blits())
+			if (blit.page() == page && blit.rect().contains(point)) {
+				matches.append(at(i));
+				qDebug("Shape %d", i);
+				break;
+			}
+	return matches;
+}
+
 void ShapeList::doSort(ShapeList::SortMethod method, ShapeNode *root)
 {
 	ShapeList newOrder;
