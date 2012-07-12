@@ -1,4 +1,4 @@
-Source: djview4poliqarp
+Source: djview4shapes
 Section: graphics
 Priority: optional
 #Maintainer: Barak A. Pearlmutter <bap@debian.org>
@@ -13,14 +13,15 @@ Build-Depends: debhelper (>= 8),
 Homepage: https://bitbucket.org/jsbien/ndt
 Standards-Version: 3.9.1
 
-Package: djview4poliqarp
+Package: djview4shapes
 Section: graphics
 Architecture: any
 Provides: djvu4poliqarp
 #Conflicts: djview (<= 3.5.20-5)
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends: djvulibre-desktop
-Suggests: djvulibre-bin, djview-plugin
-Description: Viewer for the DjVu image format
- DjVu viewer djview.
+Suggests: djview4
+Description: Simple viewer for the common shapes dictionaries contained in DjVu documents
+ djview4shapes (a fork of djview4) allows to display the common shapes dictionaries
+ to facilitate e.g. transcription and character inventory extraction.
 
