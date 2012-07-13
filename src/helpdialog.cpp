@@ -22,5 +22,6 @@ QString HelpDialog::readFileContent(const QString &language) const
 	if (!file.open(QIODevice::ReadOnly))
 		return "";
 	QTextStream stream(&file);
+	stream.setCodec("UTF-8");
 	return stream.readAll();
 }
