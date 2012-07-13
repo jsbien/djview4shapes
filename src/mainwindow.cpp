@@ -13,6 +13,7 @@
 ****************************************************************************/
 
 #include "blit.h"
+#include "helpdialog.h"
 #include "mainwindow.h"
 #include "messagedialog.h"
 #include "qdjvu.h"
@@ -21,7 +22,7 @@
 #include "preferencesdialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
-	QMainWindow(parent)
+	QMainWindow(parent), m_helpDialog(0)
 {
 	m_context = new QDjVuContext("djvu-shapes", this);
 	m_document = 0;
@@ -66,6 +67,13 @@ void MainWindow::closeEvent(QCloseEvent* event)
 	if (queryClose())
 		saveSettings();
 	else event->ignore();
+}
+
+HelpDialog *MainWindow::helpDialog()
+{
+	if (!m_helpDialog)
+		m_helpDialog = new HelpDialog(this);
+	return m_helpDialog;
 }
 
 bool MainWindow::queryClose()
@@ -148,6 +156,11 @@ void MainWindow::launchDjview(const Blit &blit)
 
 }
 
+void MainWindow::toggleHelp()
+{
+	helpDialog()->setVisible(ui.actionHelp->isChecked());
+}
+
 void MainWindow::setupActions()
 {
 	m_recentFiles.plug(ui.actionFileRecent);
@@ -164,6 +177,7 @@ void MainWindow::setupActions()
 			  SLOT(configure()));
 
 	// Help menu
+	connect(ui.actionHelp, SIGNAL(toggled(bool)), this, SLOT(toggleHelp()));
 	connect(ui.actionHelpAbout, SIGNAL(triggered()), this,
 			  SLOT(showAboutDialog()));
 
