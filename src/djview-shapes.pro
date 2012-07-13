@@ -71,4 +71,6 @@ RESOURCES += \
 	 resources.qrc
 
 OTHER_FILES += \
-	 i18n/pl.ts
+	 i18n/pl.ts \
+    help/pl.html \
+    help/en.html
