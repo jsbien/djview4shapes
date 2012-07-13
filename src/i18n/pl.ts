@@ -2,6 +2,14 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="pl_PL" sourcelanguage="en">
 <context>
+    <name>HelpDialog</name>
+    <message>
+        <location filename="../helpdialog.ui" line="14"/>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <location filename="../mainwindow.ui" line="102"/>
@@ -10,42 +18,44 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="110"/>
+        <location filename="../mainwindow.ui" line="182"/>
         <source>&amp;Help</source>
         <translation>Pomo&amp;c</translation>
     </message>
     <message>
-        <source>&amp;View</source>
-        <translation type="obsolete">&amp;Widok</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="116"/>
+        <location filename="../mainwindow.ui" line="117"/>
         <source>&amp;Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="135"/>
+        <location filename="../mainwindow.ui" line="136"/>
         <source>&amp;Open...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="143"/>
-        <location filename="../mainwindow.ui" line="146"/>
+        <location filename="../mainwindow.ui" line="144"/>
+        <location filename="../mainwindow.ui" line="147"/>
         <source>Open recent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="154"/>
+        <location filename="../mainwindow.ui" line="155"/>
         <source>&amp;Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="162"/>
+        <location filename="../mainwindow.ui" line="163"/>
         <source>&amp;About...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="173"/>
+        <location filename="../mainwindow.ui" line="174"/>
         <source>Configure Djview-Shapes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="185"/>
+        <source>F1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -54,54 +64,54 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="170"/>
+        <location filename="../mainwindow.ui" line="171"/>
         <source>&amp;Configure...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="96"/>
+        <location filename="../mainwindow.cpp" line="104"/>
         <source> (build %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="98"/>
+        <location filename="../mainwindow.cpp" line="106"/>
         <source>%1
 Version %2 %3
 (c) Michal Rudolf 2012</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="100"/>
+        <location filename="../mainwindow.cpp" line="108"/>
         <source>About application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="118"/>
+        <location filename="../mainwindow.cpp" line="126"/>
         <source>Images (*.png)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="118"/>
+        <location filename="../mainwindow.cpp" line="126"/>
         <source>Base image name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="145"/>
+        <location filename="../mainwindow.cpp" line="153"/>
         <source>Cannot execute program:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="171"/>
+        <location filename="../mainwindow.cpp" line="185"/>
         <source>Export images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="179"/>
+        <location filename="../mainwindow.cpp" line="193"/>
         <source>DjVu files (*.djvu)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="180"/>
+        <location filename="../mainwindow.cpp" line="194"/>
         <source>Open file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -141,13 +151,6 @@ Version %2 %3
         <location filename="../messagedialog.h" line="39"/>
         <source>Save file as</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Poliqarp</name>
-    <message>
-        <source>This does not look like a Poliqarp server.</source>
-        <translation type="obsolete">To nie wygląda na serwer Poliqarpa.</translation>
     </message>
 </context>
 <context>
