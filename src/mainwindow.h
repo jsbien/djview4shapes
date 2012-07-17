@@ -21,6 +21,7 @@
 class Blit;
 class QDjVuContext;
 class QDjVuDocument;
+class HelpDialog;
 
 class MainWindow : public QMainWindow
 {
@@ -44,9 +45,13 @@ private slots:
 	void configure();
 	/** Show blit in external document. */
 	void launchDjview(const Blit& blit);
+	/** Toggle help. */
+	void toggleHelp();
 protected:
 	 /** Confirm quitting. */
 	 void closeEvent(QCloseEvent* event);
+	 /** Help dialog. */
+	 HelpDialog* helpDialog();
 
 	 /** Connect actions. */
 	 void setupActions();
@@ -64,6 +69,8 @@ protected:
 	 QDjVuDocument* m_document;
 	 QDjVuContext* m_context;
 	 QString m_filename;
+
+	 HelpDialog* m_helpDialog;
 };
 
 #endif // MAINWINDOW_H

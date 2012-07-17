@@ -34,14 +34,15 @@ HEADERS += recentfiles.h \
 	 version.h \
 	 shapeswidget.h \
 	 shapeextractor.h \
-    shape.h \
-    shapelist.h \
-    shapemodel.h \
-    blit.h \
-    shapedocument.h \
-    shapepreview.h \
-    shapepreviewlist.h \
-    preferencesdialog.h
+	 shape.h \
+	 shapelist.h \
+	 shapemodel.h \
+	 blit.h \
+	 shapedocument.h \
+	 shapepreview.h \
+	 shapepreviewlist.h \
+	 preferencesdialog.h \
+	 helpdialog.h
 
 SOURCES += recentfiles.cpp \
 	 mainwindow.cpp \
@@ -53,16 +54,23 @@ SOURCES += recentfiles.cpp \
 	 main.cpp \
 	 shapeswidget.cpp \
 	 shapeextractor.cpp \
-    shape.cpp \
-    shapelist.cpp \
-    shapemodel.cpp \
-    blit.cpp \
-    shapedocument.cpp \
-    shapepreview.cpp \
-    shapepreviewlist.cpp \
-    preferencesdialog.cpp
+	 shape.cpp \
+	 shapelist.cpp \
+	 shapemodel.cpp \
+	 blit.cpp \
+	 shapedocument.cpp \
+	 shapepreview.cpp \
+	 shapepreviewlist.cpp \
+	 preferencesdialog.cpp \
+	 helpdialog.cpp
 FORMS = mainwindow.ui \
-    preferencesdialog.ui
+	 preferencesdialog.ui \
+	 helpdialog.ui
 
 RESOURCES += \
 	 resources.qrc
+
+OTHER_FILES += \
+	 i18n/pl.ts \
+    help/pl.html \
+    help/en.html
