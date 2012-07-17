@@ -1,231 +1,190 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="pl_PL" sourcelanguage="en">
+<!DOCTYPE TS><TS>
 <context>
     <name>HelpDialog</name>
     <message>
-        <location filename="../helpdialog.ui" line="14"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomoc</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../mainwindow.ui" line="102"/>
         <source>&amp;File</source>
         <translation>&amp;Plik</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="110"/>
-        <location filename="../mainwindow.ui" line="182"/>
         <source>&amp;Help</source>
         <translation>Pomo&amp;c</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="117"/>
         <source>&amp;Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ustawienia</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="136"/>
         <source>&amp;Open...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Otwórz...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="144"/>
-        <location filename="../mainwindow.ui" line="147"/>
         <source>Open recent</source>
-        <translation type="unfinished"></translation>
+        <translation>Ostatnio otwierane</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="155"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zakończ</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="163"/>
         <source>&amp;About...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;O programie...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="174"/>
         <source>Configure Djview-Shapes</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguruj</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="185"/>
         <source>F1</source>
-        <translation type="unfinished"></translation>
+        <translation>F1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="14"/>
         <source>DjVuPoliqarp</source>
-        <translation type="unfinished"></translation>
+        <translation>Djview4Poliqarp</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="171"/>
         <source>&amp;Configure...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Konfiguruj...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="104"/>
         <source> (build %1)</source>
-        <translation type="unfinished"></translation>
+        <translation> (build %1)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="106"/>
         <source>%1
 Version %2 %3
 (c) Michal Rudolf 2012</source>
-        <translation type="unfinished"></translation>
+        <translation>%1
+Wersja %2 %3
+(c) Michal Rudolf 2012</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="108"/>
         <source>About application</source>
-        <translation type="unfinished"></translation>
+        <translation>O aplikacji</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="126"/>
         <source>Images (*.png)</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrazy  (*.png)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="126"/>
         <source>Base image name</source>
-        <translation type="unfinished"></translation>
+        <translation>Podstawowa nazwa obrazu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="153"/>
         <source>Cannot execute program:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można wykonać programu:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="185"/>
         <source>Export images</source>
-        <translation type="unfinished"></translation>
+        <translation>Eksportuj obrazy</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="193"/>
         <source>DjVu files (*.djvu)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pliki DjVu  (*.djvu)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="194"/>
         <source>Open file</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz plik</translation>
     </message>
 </context>
 <context>
     <name>MessageDialog</name>
     <message>
-        <location filename="../messagedialog.cpp" line="71"/>
-        <location filename="../messagedialog.cpp" line="91"/>
         <source>;;All files (*.*)</source>
-        <translation type="unfinished"></translation>
+        <translation>;;Wszystkie pliki (*.*)</translation>
     </message>
     <message>
-        <location filename="../messagedialog.h" line="24"/>
-        <location filename="../messagedialog.h" line="25"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd</translation>
     </message>
     <message>
-        <location filename="../messagedialog.h" line="26"/>
         <source>Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informacja</translation>
     </message>
     <message>
-        <location filename="../messagedialog.h" line="27"/>
-        <location filename="../messagedialog.h" line="29"/>
-        <location filename="../messagedialog.h" line="31"/>
         <source>Question</source>
-        <translation type="unfinished"></translation>
+        <translation>Pytanie</translation>
     </message>
     <message>
-        <location filename="../messagedialog.h" line="34"/>
         <source>Open file</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz plik</translation>
     </message>
     <message>
-        <location filename="../messagedialog.h" line="39"/>
         <source>Save file as</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapisz plik jako</translation>
     </message>
 </context>
 <context>
     <name>PreferencesDialog</name>
     <message>
-        <location filename="../preferencesdialog.ui" line="14"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Preferencje</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="20"/>
         <source>&amp;Highlight color:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kolor wyróżnienia:</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="43"/>
         <source>Preview height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wysokość podglądu:</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="50"/>
         <source> pixels</source>
-        <translation type="unfinished"></translation>
+        <translation>(sp)pikseli</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="69"/>
         <source>&amp;Path to DjView4:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka do &amp;djview4:</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="116"/>
         <source>Maximum pages:</source>
-        <translation type="unfinished"></translation>
+        <translation>Maksymalna liczba stron:</translation>
     </message>
 </context>
 <context>
     <name>QDjVuHttpDocument</name>
     <message>
-        <location filename="../qdjvuhttp.cpp" line="138"/>
         <source>Unsupported url scheme &apos;%1:&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Niewspierany schemat URL %1:&apos;.</translation>
     </message>
     <message>
-        <location filename="../qdjvuhttp.cpp" line="194"/>
         <source>Requesting &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Requesting &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../qdjvuhttp.cpp" line="232"/>
         <source>Received %1 data while retrieving %2.</source>
         <comment>%1 is a mime type</comment>
-        <translation type="unfinished"></translation>
+        <translation>Received %1 data while retrieving %2.</translation>
     </message>
     <message>
-        <location filename="../qdjvuhttp.cpp" line="238"/>
         <source>Received http status %1 while retrieving %2.</source>
         <comment>%1 is an http status code</comment>
-        <translation type="unfinished"></translation>
+        <translation>Received http status %1 while retrieving %2.</translation>
     </message>
     <message>
-        <location filename="../qdjvuhttp.cpp" line="272"/>
         <source>%1 while retrieving &apos;%2&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 while retrieving &apos;%2&apos;.</translation>
     </message>
 </context>
 <context>
     <name>ShapeNode</name>
     <message>
-        <location filename="../shape.cpp" line="80"/>
         <source>Depth: %1
 Descendants: %2
 Siblings: %3
 Occurences: %4
 Pixmap size: %5x%6</source>
-        <translation type="unfinished"></translation>
+        <translation>Głębokość: %1(new line)
+Potomkowie: %2(new line)
+Rodzeństwo: %3(new line)
+Wystąpienia: %4(new line)
+Rozmiar w pikselach: %5x%6</translation>
     </message>
 </context>
 </TS>
