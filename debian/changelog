@@ -1,9 +1,5 @@
 djview4shapes (0.60) UNRELEASED; urgency=low
 
-  * A stable release
+  * A preliminary release
 
- -- NDT team <klf@uw.edu.pl  Tue, 17 Jul 2012 11:34:44 +0200
-
-  * A upstream release
-
- -- NDT team <klf@uw.edu.pl>  Fri, 06 July 2012 17:21:01 +0000
+ -- NDT team <klf@uw.edu.pl>  Tue, 17 Jul 2012 11:34:44 +0200
