@@ -3,8 +3,8 @@ djview4shapes is a fork of djview4
 the content of common shapes dictionaries contained in DjVu
 documents.
 
-The ideas to display the common shapes of a document (to facilitate
-e.g. transcription and character inventory extraction) and others
+The idea to display the common shapes of a document (to facilitate
+e.g. transcription and character inventory extraction) and other
 suggestions were formulated by Janusz S. Bień. The program is developed by
 Michał Rudolf using some code of Grzegorz Chimosz.
 
