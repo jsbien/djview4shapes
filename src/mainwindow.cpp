@@ -58,8 +58,13 @@ void MainWindow::openFile(const QString &filename)
 	}
 	m_document = new QDjVuDocument(this);
 	connect(m_document, SIGNAL(docinfo()), this, SLOT(documentLoaded()));
-	m_document->setFileName(m_context, filename);
-	m_recentFiles.addFile(m_filename = filename);
+	if (!m_document->setFileName(m_context, filename)) {
+		MessageDialog::warning(tr("Cannot read file: %1").arg(filename));
+		m_document->deleteLater();
+		m_document = 0;
+		m_recentFiles.removeFile(filename);
+	}
+	else m_recentFiles.addFile(m_filename = filename);
 }
 
 void MainWindow::closeEvent(QCloseEvent* event)

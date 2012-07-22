@@ -44,6 +44,8 @@ void ShapesWidget::close()
 	qDeleteAll(m_shapes);
 	m_shapes.clear();
 	m_rootShape->clear();
+	setModel(0);
+	setModel(m_model);
 }
 
 void ShapesWidget::onClicked(const QModelIndex &index)
