@@ -1,4 +1,6 @@
-<!DOCTYPE TS><TS>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0" language="pl_PL" sourcelanguage="en">
 <context>
     <name>HelpDialog</name>
     <message>
@@ -124,7 +126,7 @@ Wersja %2 %3
     <name>PreferencesDialog</name>
     <message>
         <source>Preferences</source>
-        <translation>Preferencje</translation>
+        <translation>Ustawienia</translation>
     </message>
     <message>
         <source>&amp;Highlight color:</source>
@@ -180,10 +182,10 @@ Descendants: %2
 Siblings: %3
 Occurences: %4
 Pixmap size: %5x%6</source>
-        <translation>Głębokość: %1(new line)
-Potomkowie: %2(new line)
-Rodzeństwo: %3(new line)
-Wystąpienia: %4(new line)
+        <translation>Głębokość: %1
+Potomkowie: %2
+Rodzeństwo: %3
+Wystąpienia: %4
 Rozmiar w pikselach: %5x%6</translation>
     </message>
 </context>
