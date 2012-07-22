@@ -53,7 +53,7 @@ QModelIndex ShapeModel::indexOf(ShapeNode *node) const
 	else return index(position / columnCount(), position % columnCount());
 }
 
-void ShapeModel::setColumnCount(int columns)
+void ShapeModel::setVisibleColumnCount(int columns)
 {
 	m_columns = columns;
 	reset();

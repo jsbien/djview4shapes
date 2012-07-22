@@ -25,7 +25,9 @@ public:
 	QModelIndex indexOf(ShapeNode* node) const;
 
 	/** Set number of columns. */
-	void setColumnCount(int columns);
+	void setVisibleColumnCount(int columns);
+	/** @return number of visible columns.*/
+	int visibleColumnCount() const {return m_columns;}
 	/** @return a shape at given index or 0 if there is no such index. */
 	ShapeNode* nodeAt(const QModelIndex& index) const;
 	/** Set list of selected items. */

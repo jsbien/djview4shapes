@@ -44,8 +44,7 @@ void ShapesWidget::close()
 	qDeleteAll(m_shapes);
 	m_shapes.clear();
 	m_rootShape->clear();
-	setModel(0);
-	setModel(m_model);
+	m_model->setVisibleColumnCount(m_model->visibleColumnCount());
 }
 
 void ShapesWidget::onClicked(const QModelIndex &index)
@@ -78,7 +77,7 @@ ShapeList ShapesWidget::selectedOccurences() const
 
 void ShapesWidget::resizeEvent(QResizeEvent *event)
 {
-	m_model->setColumnCount((width() - 20) / horizontalHeader()->defaultSectionSize());
+	m_model->setVisibleColumnCount((width() - 20) / horizontalHeader()->defaultSectionSize());
 	QTableView::resizeEvent(event);
 }
 
