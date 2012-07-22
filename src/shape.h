@@ -48,11 +48,16 @@ public:
 	void clear();
 	/** @return size of the shape. */
 	QSize size() const {return m_pixmap.size();}
+	/** Sort items. */
+	void sortChildren(bool recursively = false);
 
 	// Blits
 	const QList<Blit>& blits() { return m_blits; }
 	void addBlit(const Blit& blit);
-	static bool widerThan(ShapeNode * n1, ShapeNode *n2);
+
+	// Comparison operator
+	static bool biggerThan(ShapeNode * n1, ShapeNode *n2);
+	static bool smallerThan(ShapeNode * n1, ShapeNode *n2);
 private:
 	ShapeNode *m_parent;
 	ShapeList m_children;

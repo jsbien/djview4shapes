@@ -9,11 +9,11 @@ ShapeList::ShapeList()
 {
 }
 
-void ShapeList::sort(ShapeList::SortMethod method, ShapeNode* root)
+void ShapeList::sort(SortMethod method, ShapeNode* root)
 {
 	switch (method) {
 	case SortByWidth:
-		qSort(begin(), end(), ShapeNode::widerThan);
+		qSort(begin(), end(), ShapeNode::biggerThan);
 		break;
 	case SortByPreorder:
 	case SortByPostorder:
@@ -41,7 +41,7 @@ ShapeList ShapeList::find(int page, const QPoint &point) const
 	return matches;
 }
 
-void ShapeList::doSort(ShapeList::SortMethod method, ShapeNode *root)
+void ShapeList::doSort(SortMethod method, ShapeNode *root)
 {
 	ShapeList newOrder;
 	foreach (ShapeNode* node, root->children()) {

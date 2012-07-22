@@ -56,7 +56,10 @@ ShapeList ShapeExtractor::extract(ShapeNode *root, int firstPage, int pageCount)
 		shapes.append(extractPage(firstPage + page, root));
 		emit progress((page + 1) * 100 / pageCount);
 	}
-	qDebug("Time elapsed: %f", elapsed.elapsed() / 1000.0);
+
+	root->sortChildren(true);
+	shapes.sort(ShapeList::SortByPreorder, root);
+
 	return shapes;
 }
 

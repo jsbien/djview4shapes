@@ -89,15 +89,38 @@ void ShapeNode::clear()
 	m_parent = 0;
 }
 
+void ShapeNode::sortChildren(bool recursively)
+{
+	qSort(m_children.begin(), m_children.end(), ShapeNode::smallerThan);
+	if (recursively)
+		for (int i = 0; i < m_children.count(); i++)
+			m_children[i]->sortChildren(true);
+}
+
 void ShapeNode::addBlit(const Blit &blit)
 {
 	 m_blits.append(blit);
 }
 
-bool ShapeNode::widerThan(ShapeNode * n1, ShapeNode *n2)
+bool ShapeNode::biggerThan(ShapeNode * n1, ShapeNode *n2)
 {
-	 if (!n1 || !n2)
-		  return false;
-
-	 return n1->pixmap().size().width() > n2->pixmap().size().width();
+	 if (!n1)
+		 return false;
+	 else if (!n2)
+		 return true;
+	 else if (n1->pixmap().width() == n2->pixmap().width())
+		 return n1->pixmap().height() > n2->pixmap().height();
+	 else return n1->pixmap().width() > n2->pixmap().width();
 }
+
+bool ShapeNode::smallerThan(ShapeNode * n1, ShapeNode *n2)
+{
+	 if (!n1)
+		 return false;
+	 else if (!n2)
+		 return true;
+	 else if (n1->pixmap().width() == n2->pixmap().width())
+		 return n1->pixmap().height() < n2->pixmap().height();
+	 else return n1->pixmap().width() < n2->pixmap().width();
+}
+

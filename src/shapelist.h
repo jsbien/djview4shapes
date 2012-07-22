@@ -14,6 +14,7 @@ class ShapeList : public QList<ShapeNode*>
 {
 public:
 	enum SortMethod {SortByWidth, SortByPreorder, SortByPostorder};
+
 	ShapeList();
 	void sort(SortMethod method, ShapeNode* root);
 	QSize maximumSize() const;

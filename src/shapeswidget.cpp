@@ -36,7 +36,6 @@ void ShapesWidget::open(QDjVuDocument *document)
 	m_shapes = extractor.extract(m_rootShape);
 	extractor.close();
 
-	m_shapes.sort(ShapeList::SortByPreorder, m_rootShape);
 	setModel(m_model);
 }
 
