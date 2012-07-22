@@ -1,6 +1,14 @@
-djview4poliqarp is a fork of djview4 (http://djvu.sourceforge.net/djview4.html).
-Its purpose is to serve as a remote client to Poliqarp for DjVu server
-providing access to so called graphical concordances in a convenient way,
-cf. eg. https://bitbucket.org/jsbien/ndt/wiki/z_djview4p.
+djview4shapes is a fork of djview4
+(http://djvu.sourceforge.net/djview4.html).  Its purpose is to display
+the content of common shapes dictionaries contained in DjVu
+documents.
+
+The idea to display the common shapes of a document (to facilitate
+e.g. transcription and character inventory extraction) and other
+suggestions were formulated by Janusz S. Bień. The program is developed by
+Michał Rudolf using some code of Grzegorz Chimosz.
+
+The work is supported by the Ministry of Science and Higher
+Education's grant no. N N519 384036.
 
 

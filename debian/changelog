@@ -1,6 +1,5 @@
-djview4poliqarp (4.7-1) unstable; urgency=low
+djview4shapes (0.60) experimental; urgency=low
 
-  * New upstream release
+  * A preliminary release
 
- -- Barak A. Pearlmutter <bap@debian.org>  Mon, 07 Mar 2011 17:21:01 +0000
-
+ -- NDT team <klf@uw.edu.pl>  Tue, 17 Jul 2012 11:34:44 +0200

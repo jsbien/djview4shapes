@@ -38,7 +38,7 @@ XDG_ICON_RESOURCE = @XDG_ICON_RESOURCE@
 XDG_DESKTOP_MENU = @XDG_DESKTOP_MENU@
 RM = @RM@
 
-datadir_djview = ${datadir}/djvu/djview4poliqarp/desktop
+datadir_djview = ${datadir}/djvu/djview4shapes/desktop
 
 
 # -------- all
