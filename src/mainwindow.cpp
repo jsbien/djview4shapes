@@ -39,8 +39,8 @@ MainWindow::MainWindow(QWidget *parent) :
 	connect(ui.shapeWidget, SIGNAL(showOccurences(ShapeList)), ui.previewWidget,
 			  SLOT(showItems(ShapeList)));
 
-	connect(ui.previewWidget, SIGNAL(pageRequested(int)), ui.djvuWidget,
-			  SLOT(setPage(int)));
+	connect(ui.previewWidget, SIGNAL(blitRequested(Blit)), this,
+			  SLOT(showBlit(Blit)));
 	connect(ui.previewWidget, SIGNAL(documentRequested(Blit)), this,
 			  SLOT(launchDjview(Blit)));
 
@@ -147,6 +147,13 @@ void MainWindow::configure()
 	PreferencesDialog dlg(this);
 	if (dlg.exec())
 		dlg.saveSettings();
+}
+
+void MainWindow::showBlit(const Blit &blit)
+{
+	QPoint centered = QPoint(ui.djvuWidget->width() / 2,
+									 ui.djvuWidget->height() / 2);
+	ui.djvuWidget->setPosition(blit.djvuPosition(), centered);
 }
 
 void MainWindow::launchDjview(const Blit &blit)

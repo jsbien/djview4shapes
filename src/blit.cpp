@@ -17,6 +17,16 @@ Blit::Blit(int page, int left, int top, const QSize& size)
 	m_rect.setSize(size);
 }
 
+QDjVuWidget::Position Blit::djvuPosition() const
+{
+	QDjVuWidget::Position pos;
+	pos.pageNo = m_page;
+	pos.inPage = true;
+	pos.doPage = true;
+	pos.posPage = position();
+	return pos;
+}
+
 QString Blit::link() const
 {
 	QString args;

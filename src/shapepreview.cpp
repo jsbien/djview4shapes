@@ -23,11 +23,7 @@ void ShapePreview::setBlit(ShapeNode* node, const Blit &blit)
 	QColor color(QSettings().value("Display/highlight", "#ffff00").toString());
 	color.setAlpha(128);
 
-	QDjVuWidget::Position pos;
-	pos.pageNo = blit.page();
-	pos.inPage = true;
-	pos.doPage = true;
-	pos.posPage = blit.position();
+	Position pos = m_blit.djvuPosition();
 	addHighlight(pos.pageNo, blit.left(), blit.top(), node->pixmap().width(),
 					 node->pixmap().height(), color);
 	setPosition(pos, QPoint(width() / 2, height() / 2));
@@ -49,7 +45,7 @@ void ShapePreview::focusInEvent(QFocusEvent* event)
 void ShapePreview::mouseDoubleClickEvent(QMouseEvent*)
 {
 	if (m_blit.isValid())
-		emit pageRequested(m_blit.page());
+		emit blitRequested(m_blit);
 }
 
 void ShapePreview::mousePressEvent(QMouseEvent *event)

@@ -26,7 +26,7 @@ private slots:
 	void updateCurrentItem();
 signals:
 	void currentIndexChanged(int index);
-	void pageRequested(int page);
+	void blitRequested(const Blit& blit);
 	void documentRequested(const Blit& blit);
 private:
 	void addItem(ShapeNode *node, const Blit &blit);

@@ -5,8 +5,7 @@
 #ifndef BLIT_H
 #define BLIT_H
 
-#include <QtCore>
-
+#include "qdjvuwidget.h"
 
 class Blit
 {
@@ -16,6 +15,7 @@ public:
 	bool isValid() const {return m_page >= 0 && m_rect.width() > 0;}
 	int page() const {return m_page;}
 	QPoint position() const {return m_rect.topLeft();}
+	QDjVuWidget::Position djvuPosition() const;
 	int left() const {return m_rect.x();}
 	int top() const {return m_rect.y();}
 	int width() const {return m_rect.width();}

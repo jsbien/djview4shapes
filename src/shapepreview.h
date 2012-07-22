@@ -28,7 +28,7 @@ protected:
 	void mousePressEvent(QMouseEvent *event);
 signals:
 	void activated();
-	void pageRequested(int page);
+	void blitRequested(const Blit& blit);
 	void documentRequested(const Blit& blit);
 private:
 	Blit m_blit;

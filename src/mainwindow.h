@@ -43,6 +43,8 @@ private slots:
 	void exportPixmaps();
 	/** Configure program. */
 	void configure();
+	/** Show blit in main document. */
+	void showBlit(const Blit& blit);
 	/** Show blit in external document. */
 	void launchDjview(const Blit& blit);
 	/** Toggle help. */
