@@ -145,8 +145,10 @@ void MainWindow::exportPixmaps()
 void MainWindow::configure()
 {
 	PreferencesDialog dlg(this);
-	if (dlg.exec())
+	if (dlg.exec()) {
 		dlg.saveSettings();
+		ui.shapeWidget->configure();
+	}
 }
 
 void MainWindow::showBlit(const Blit &blit)

@@ -92,3 +92,9 @@ void ShapesWidget::findShapes(int page, const QPoint &point)
 	}
 	emit showOccurences(found);
 }
+
+void ShapesWidget::configure()
+{
+	m_model->setHighlightRoot(QSettings().value("Display/highlightRoot", true).toBool());
+}
+

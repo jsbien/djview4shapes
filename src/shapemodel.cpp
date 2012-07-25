@@ -9,6 +9,7 @@ ShapeModel::ShapeModel(ShapeList* shapes, QObject *parent) :
 	QAbstractTableModel(parent), m_shapes(shapes)
 {
 	m_columns = 20;
+	m_highlightRoot = true;
 }
 
 int ShapeModel::rowCount(const QModelIndex &parent) const
@@ -30,6 +31,11 @@ QVariant ShapeModel::data(const QModelIndex &index, int role) const
 	ShapeNode* node = nodeAt(index);
 	if (!node)
 		return QVariant();
+
+	int darker = 100;
+	if (m_highlightRoot)
+		darker += (node->depth() - 1) * 10;
+
 	switch (role) {
 	case Qt::DecorationRole:
 		return node->scaledPixmap(QSize(30 - 2 * Padding, 30 - 2 * Padding));
@@ -37,7 +43,9 @@ QVariant ShapeModel::data(const QModelIndex &index, int role) const
 		return node->toolTip();
 	case Qt::BackgroundRole:
 		if (m_selectedItems.contains(node))
-			return Qt::yellow;
+			return QColor(Qt::green).darker(darker);
+		else if (m_highlightRoot && node->depth() > 1)
+			return QColor(Qt::white).darker(darker);
 		else return QVariant();
 	default:
 		break;
@@ -51,6 +59,14 @@ QModelIndex ShapeModel::indexOf(ShapeNode *node) const
 	if (position == -1)
 		return QModelIndex();
 	else return index(position / columnCount(), position % columnCount());
+}
+
+void ShapeModel::setHighlightRoot(bool enabled)
+{
+	if (m_highlightRoot != enabled) {
+		m_highlightRoot = enabled;
+		reset();
+	}
 }
 
 void ShapeModel::setVisibleColumnCount(int columns)

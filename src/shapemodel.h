@@ -24,6 +24,8 @@ public:
 	/** @return index of given shape. */
 	QModelIndex indexOf(ShapeNode* node) const;
 
+	/** Set whether root shapes should be displayed. */
+	void setHighlightRoot(bool enabled);
 	/** Set number of columns. */
 	void setVisibleColumnCount(int columns);
 	/** @return number of visible columns.*/
@@ -36,6 +38,7 @@ public:
 	ShapeList selectedItems() const;
 
 private:
+	bool m_highlightRoot;
 	int m_columns;
 	ShapeList* m_shapes;
 	QSet<ShapeNode*> m_selectedItems;

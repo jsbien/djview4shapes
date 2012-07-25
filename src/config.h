@@ -9,11 +9,9 @@
 #define AUTOCONF 1
 
 #ifdef WIN32
-#warning OK
 #include "autoconfigwin.h"
 #else
 #include "autoconfig.h"
 #define THREADMODEL POSIXTHREADS
 #define CPP_SUPPORTS_EXCEPTIONS 1
-#warning Dupa
 #endif
