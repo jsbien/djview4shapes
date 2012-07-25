@@ -44,7 +44,8 @@ HEADERS += recentfiles.h \
 	 preferencesdialog.h \
 	 helpdialog.h \
 	 autoconfig.h \
-	 config.h
+	 config.h \
+    autoconfigwin.h
 
 SOURCES += recentfiles.cpp \
 	 mainwindow.cpp \
