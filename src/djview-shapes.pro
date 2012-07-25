@@ -11,7 +11,7 @@ RESOURCES = resources.qrc
 
 TRANSLATIONS = i18n/pl.ts
 
-win32:LIBS = /home/michal/programming/build/djvulibre-windows/libdjvulibre.dll.a
+win32:libs = /home/programming/build/djvulibre-windows/libdjvu/.libdjvu/libdjvulibre.dll.a
 unix:LIBS = -ldjvulibre
 
 !win32 {
@@ -42,7 +42,9 @@ HEADERS += recentfiles.h \
 	 shapepreview.h \
 	 shapepreviewlist.h \
 	 preferencesdialog.h \
-	 helpdialog.h
+	 helpdialog.h \
+	 autoconfig.h \
+	 config.h
 
 SOURCES += recentfiles.cpp \
 	 mainwindow.cpp \
@@ -72,5 +74,5 @@ RESOURCES += \
 
 OTHER_FILES += \
 	 i18n/pl.ts \
-    help/pl.html \
-    help/en.html
+	 help/pl.html \
+	 help/en.html
