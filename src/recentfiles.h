@@ -15,7 +15,7 @@
 #ifndef __RECENTFILES_H__
 #define __RECENTFILES_H__
 
-#include <QtGui>
+#include <QtWidgets>
 
 class RecentFiles : public QObject {
 	Q_OBJECT

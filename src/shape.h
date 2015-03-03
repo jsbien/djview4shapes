@@ -16,7 +16,7 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 
-#include <QtGui>
+#include <QtWidgets>
 #include "blit.h"
 #include "shapelist.h"
 

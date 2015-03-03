@@ -6,7 +6,7 @@
 #define SHAPESWIDGET_H
 
 #include "shape.h"
-#include <QtGui>
+#include <QtWidgets>
 
 class QDjVuDocument;
 class ShapeModel;

@@ -64,15 +64,17 @@ QModelIndex ShapeModel::indexOf(ShapeNode *node) const
 void ShapeModel::setHighlightRoot(bool enabled)
 {
 	if (m_highlightRoot != enabled) {
+		beginResetModel();
 		m_highlightRoot = enabled;
-		reset();
+		endResetModel();
 	}
 }
 
 void ShapeModel::setVisibleColumnCount(int columns)
 {
+	beginResetModel();
 	m_columns = columns;
-	reset();
+	endResetModel();
 }
 
 ShapeNode *ShapeModel::nodeAt(const QModelIndex &index) const

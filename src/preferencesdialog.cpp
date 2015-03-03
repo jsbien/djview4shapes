@@ -3,7 +3,7 @@
 ****************************************************************************/
 
 #include "preferencesdialog.h"
-#include <QtGui>
+#include <QtWidgets>
 
 PreferencesDialog::PreferencesDialog(QWidget *parent) :
 	 QDialog(parent)

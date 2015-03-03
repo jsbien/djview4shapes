@@ -13,7 +13,7 @@
 ****************************************************************************/
 
 
-#include <QtGui/QApplication>
+#include <QApplication>
 #include "mainwindow.h"
 
 int main(int argc, char *argv[])
@@ -21,6 +21,7 @@ int main(int argc, char *argv[])
 	QApplication a(argc, argv);
 	a.setOrganizationName("djview-poliqarp");
 	a.setApplicationName("djview-poliqarp");
+	a.setWindowIcon(QIcon(":/images/application.png"));
 
 	QString language = QLocale::system().name().left(2);
 	QString translation = QString(":i18n/%1.qm").arg(language);

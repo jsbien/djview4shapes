@@ -2,7 +2,7 @@
 *   Copyright (C) 2012 by Michal Rudolf <michal@rudolf.waw.pl>              *
 ****************************************************************************/
 
-#include <QtGui>
+#include <QtWidgets>
 #include "helpdialog.h"
 
 HelpDialog::HelpDialog(QWidget *parent) :

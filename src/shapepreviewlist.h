@@ -7,7 +7,7 @@
 
 #include "shapepreview.h"
 #include "shape.h"
-#include <QtGui>
+#include <QtWidgets>
 
 class ShapePreviewList : public QScrollArea
 {
