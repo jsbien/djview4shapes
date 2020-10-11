@@ -1,3 +1,9 @@
+djview4shapes (0.62) experimental; urgency=medium
+
+  * Problems fixed by Alexander Trufanov.
+
+ -- Janusz S. Bień <jsbien@mimuw.edu.pl>  Sun, 11 Oct 2020 18:44:08 +0200
+
 djview4shapes (0.61) experimental; urgency=low
 
   * Center on current highlight when double-clicking. 
