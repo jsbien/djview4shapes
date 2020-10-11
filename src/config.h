@@ -12,6 +12,6 @@
 #include "autoconfigwin.h"
 #else
 #include "autoconfig.h"
-#define THREADMODEL POSIXTHREADS
+#define HAVE_PTHREAD 1
 #define CPP_SUPPORTS_EXCEPTIONS 1
 #endif
