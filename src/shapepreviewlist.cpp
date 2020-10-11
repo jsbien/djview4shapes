@@ -30,6 +30,7 @@ void ShapePreviewList::showItems(const ShapeList &nodes)
 		foreach (Blit blit, item->blits())
 			addItem(item, blit);
 	m_layout->setRowStretch(m_items.count(), 100);
+	updateGeometry();
 }
 
 
