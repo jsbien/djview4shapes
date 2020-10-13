@@ -20,6 +20,6 @@ In 2020 a small but important contribution has been made by Alexander
 Trufanov.
 
 The current home of the program is this repository and new issues
-should be reported here.
+should be reported here. There original site https://bitbucket.org/mrudolf/djview-poliqarp is kept because of the open issues, but is no longer maintained.
 
 ![djview4shapes: a screenshot](screenshots/djview4shapes_Zaborowski.png?raw=true "Index of abbreviations")
