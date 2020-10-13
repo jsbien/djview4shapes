@@ -22,4 +22,4 @@ Trufanov.
 The current home of the program is this repository and new issues
 should be reported here.
 
-
+![djview4shapes: a screenshot](screenshots/djview4shapes_Zaborowski.png?raw=true "Index of abbreviations")
