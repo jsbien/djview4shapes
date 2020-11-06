@@ -10,9 +10,26 @@ RESOURCES = resources.qrc
 
 TRANSLATIONS = i18n/pl.ts
 
+# https://stackoverflow.com/questions/39334966/qt-requires-c11-support?rq=1
+# QMAKE_CXXFLAGS += -stdlib=libc++
+QMAKE_CXXFLAGS += -std=c++11
+#QMAKE_CXXFLAGS += -mmacosx-version-min=10.7
+#QMAKE_LFLAGS += -mmacosx-version-min=10.7
+
 win32 {
   RC_FILE = windows.rc
-  LIBS = "C:\Program Files (x86)\DjVuLibre\libdjvulibre.lib"
+  MXE_TARGET=$$(MXE_TARGET)
+  defined(MXE_TARGET, var) {
+    # additional config for cross-compilation for Windows
+    message(Cross compilation target: $$MXE_TARGET)
+    QMAKE_LFLAGS += -static -static-libgcc -static-libstdc++
+    QMAKE_LIBS += $$system($$MXE_TARGET-pkg-config ddjvuapi --libs)
+    QMAKE_CFLAGS += $$system($$MXE_TARGET-pkg-config ddjvuapi --cflags)
+    QMAKE_CXXFLAGS += $$system($$MXE_TARGET-pkg-config ddjvuapi --cflags)
+  } else {
+    # additional config for native compilation on Windows
+    LIBS += "C:\Program Files (x86)\DjVuLibre\libdjvulibre.lib"
+  }
 }
 
 macx {
