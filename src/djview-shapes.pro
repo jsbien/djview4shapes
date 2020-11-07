@@ -26,7 +26,7 @@ win32 {
     QMAKE_LIBS += $$system($$MXE_TARGET-pkg-config ddjvuapi --libs)
     QMAKE_CFLAGS += $$system($$MXE_TARGET-pkg-config ddjvuapi --cflags)
     QMAKE_CXXFLAGS += $$system($$MXE_TARGET-pkg-config ddjvuapi --cflags)
-    LIBS = ./mxe/usr/i686-w64-mingw32.static/lib/libdjvulibre.a
+    LIBS = ./mxe/usr/x86_64-w64-mingw32.static/lib/libdjvulibre.a
     } else {
     # additional config for native compilation on Windows
     LIBS += "C:\Program Files (x86)\DjVuLibre\libdjvulibre.lib"
