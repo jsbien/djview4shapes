@@ -16,13 +16,14 @@ Generally, to cross-compile this application, you need:
  * cross-compiled [djvulibre](http://djvu.sourceforge.net/) libraries
  * cross-compiled dependencies of the above
 
-Creating and using cross-compile toolchain manually is not simple though. Some
-distributions try to make it easier (like Gentoo's
-[crossdev](https://wiki.gentoo.org/wiki/Cross_build_environment)), but in most
-cases it still requires some manual configuration. In this project we use
-[MXE](http://mxe.cc/), a Makefile for creating such toolchains, configured and
-maintained by the community. A simple script is added to automate all the steps
-into a single command.
+Creating and using cross-compile toolchain manually is not simple
+though. Some distributions try to make it easier (like Gentoo's
+[crossdev](https://wiki.gentoo.org/wiki/Cross_build_environment)) (as
+of today the list is missing python-mako), but in most cases it still
+requires some manual configuration. In this project we use
+[MXE](http://mxe.cc/), a Makefile for creating such toolchains,
+configured and maintained by the community. A simple script is added
+to automate all the steps into a single command.
 
 ## 2. Requirements
 
