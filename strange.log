@@ -448,3 +448,89 @@ root@debian2:~# logout
 jsbien@debian2:~/djview4shapes$ exit
 
 Process shell exited abnormally with code 255
+jsbien@debian2:~/djview4shapes$ dpkg-buildpackage -uc -us -b -rfakeroot
+dpkg-buildpackage: info: source package djview4shapes
+dpkg-buildpackage: info: source version 0.62
+dpkg-buildpackage: info: source distribution experimental
+dpkg-buildpackage: info: source changed by Janusz S. Bień <jsbien@mimuw.edu.pl>
+dpkg-buildpackage: info: host architecture amd64
+ dpkg-source --before-build .
+ fakeroot debian/rules clean
+dh clean  --parallel
+dh: Compatibility levels before 9 are deprecated (level 8 in use)
+   debian/rules override_dh_auto_clean
+make[1]: Entering directory '/home/jsbien/djview4shapes'
+dh_auto_clean -Dsrc/
+dh_auto_clean: Compatibility levels before 9 are deprecated (level 8 in use)
+	cd src && make -j2 distclean
+make[2]: Entering directory '/home/jsbien/djview4shapes/src'
+make -f Makefile.Release distclean
+make -f Makefile.Debug distclean
+make[3]: Entering directory '/home/jsbien/djview4shapes/src'
+make[3]: Entering directory '/home/jsbien/djview4shapes/src'
+Makefile.Debug:225: warning: overriding recipe for target 'debug/qrc_resources.cpp'
+Makefile.Debug:216: warning: ignoring old recipe for target 'debug/qrc_resources.cpp'
+Makefile.Release:225: warning: overriding recipe for target 'release/qrc_resources.cpp'
+Makefile.Release:216: warning: ignoring old recipe for target 'release/qrc_resources.cpp'
+Makefile.Debug:4489: warning: overriding recipe for target 'debug/moc_qdjvunet.cpp'
+Makefile.Debug:1401: warning: ignoring old recipe for target 'debug/moc_qdjvunet.cpp'
+Makefile.Release:4489: warning: overriding recipe for target 'release/moc_qdjvunet.cpp'
+Makefile.Release:1401: warning: ignoring old recipe for target 'release/moc_qdjvunet.cpp'
+rm -f debug/qrc_resources.cpp debug/qrc_resources.cpp
+rm -f release/qrc_resources.cpp release/qrc_resources.cpp
+rm -f debug/moc_predefs.h
+rm -f debug/moc_recentfiles.cpp debug/moc_mainwindow.cpp debug/moc_qdjvuwidget.cpp debug/moc_qdjvunet.cpp debug/moc_qdjvu.cpp debug/moc_messagedialog.cpp debug/moc_shapeswidget.cpp debug/moc_shapeextractor.cpp debug/moc_shapemodel.cpp debug/moc_shapedocument.cpp debug/moc_shapepreview.cpp debug/moc_shapepreviewlist.cpp debug/moc_preferencesdialog.cpp debug/moc_helpdialog.cpp debug/moc_qdjvunet.cpp
+rm -f release/moc_predefs.h
+rm -f debug/qdjvuwidget.moc debug/qdjvu.moc debug/qdjvunet.moc
+rm -f ui_mainwindow.h ui_preferencesdialog.h ui_helpdialog.h
+rm -f release/moc_recentfiles.cpp release/moc_mainwindow.cpp release/moc_qdjvuwidget.cpp release/moc_qdjvunet.cpp release/moc_qdjvu.cpp release/moc_messagedialog.cpp release/moc_shapeswidget.cpp release/moc_shapeextractor.cpp release/moc_shapemodel.cpp release/moc_shapedocument.cpp release/moc_shapepreview.cpp release/moc_shapepreviewlist.cpp release/moc_preferencesdialog.cpp release/moc_helpdialog.cpp release/moc_qdjvunet.cpp
+rm -f debug/recentfiles.o debug/mainwindow.o debug/qdjvuwidget.o debug/qdjvu.o debug/messagedialog.o debug/version.o debug/main.o debug/shapeswidget.o debug/shapeextractor.o debug/shape.o debug/shapelist.o debug/shapemodel.o debug/blit.o debug/shapedocument.o debug/shapepreview.o debug/shapepreviewlist.o debug/preferencesdialog.o debug/helpdialog.o debug/qdjvunet.o debug/djview-shapes_plugin_import.o debug/qrc_resources.o debug/moc_recentfiles.o debug/moc_mainwindow.o debug/moc_qdjvuwidget.o debug/moc_qdjvunet.o debug/moc_qdjvu.o debug/moc_messagedialog.o debug/moc_shapeswidget.o debug/moc_shapeextractor.o debug/moc_shapemodel.o debug/moc_shapedocument.o debug/moc_shapepreview.o debug/moc_shapepreviewlist.o debug/moc_preferencesdialog.o debug/moc_helpdialog.o
+rm -f release/qdjvuwidget.moc release/qdjvu.moc release/qdjvunet.moc
+rm -f debug/windows_res.o
+rm -f ui_mainwindow.h ui_preferencesdialog.h ui_helpdialog.h
+rm -f /home/jsbien/djview4shapes/src/djview-shapes_plugin_import.cpp .qmake.stash
+rm -f release/recentfiles.o release/mainwindow.o release/qdjvuwidget.o release/qdjvu.o release/messagedialog.o release/version.o release/main.o release/shapeswidget.o release/shapeextractor.o release/shape.o release/shapelist.o release/shapemodel.o release/blit.o release/shapedocument.o release/shapepreview.o release/shapepreviewlist.o release/preferencesdialog.o release/helpdialog.o release/qdjvunet.o release/djview-shapes_plugin_import.o release/qrc_resources.o release/moc_recentfiles.o release/moc_mainwindow.o release/moc_qdjvuwidget.o release/moc_qdjvunet.o release/moc_qdjvu.o release/moc_messagedialog.o release/moc_shapeswidget.o release/moc_shapeextractor.o release/moc_shapemodel.o release/moc_shapedocument.o release/moc_shapepreview.o release/moc_shapepreviewlist.o release/moc_preferencesdialog.o release/moc_helpdialog.o
+rm -f debug/djview-shapes.exe
+rm -f Makefile.Debug
+rm -f release/windows_res.o
+make[3]: Leaving directory '/home/jsbien/djview4shapes/src'
+rm -f /home/jsbien/djview4shapes/src/djview-shapes_plugin_import.cpp .qmake.stash
+rm -f release/djview-shapes.exe
+rm -f Makefile.Release
+make[3]: Leaving directory '/home/jsbien/djview4shapes/src'
+rm -f Makefile
+rm -f /home/jsbien/djview4shapes/src/djview-shapes_plugin_import.cpp .qmake.stash
+make[2]: Leaving directory '/home/jsbien/djview4shapes/src'
+make[1]: Leaving directory '/home/jsbien/djview4shapes'
+   dh_clean -O--parallel
+dh_clean: Compatibility levels before 9 are deprecated (level 8 in use)
+ debian/rules build
+dh build  --parallel
+dh: Compatibility levels before 9 are deprecated (level 8 in use)
+   dh_update_autotools_config -O--parallel
+   debian/rules override_dh_auto_build
+make[1]: Entering directory '/home/jsbien/djview4shapes'
+cd src && qmake && make
+sh: 1: hg: not found
+make[2]: Entering directory '/home/jsbien/djview4shapes/src'
+Makefile:366: warning: overriding recipe for target 'moc_qdjvunet.cpp'
+Makefile:280: warning: ignoring old recipe for target 'moc_qdjvunet.cpp'
+Makefile:385: warning: overriding recipe for target 'qrc_resources.cpp'
+Makefile:377: warning: ignoring old recipe for target 'qrc_resources.cpp'
+g++ -c -m64 -pipe -std=c++11 -O2 -Wall -W -D_REENTRANT -DHGID=\"\" -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4 -I. -I/usr/X11R6/include -I. -I. -o version.o version.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/uic mainwindow.ui -o ui_mainwindow.h
+/usr/lib/x86_64-linux-gnu/qt4/bin/uic preferencesdialog.ui -o ui_preferencesdialog.h
+/usr/lib/x86_64-linux-gnu/qt4/bin/uic helpdialog.ui -o ui_helpdialog.h
+g++ -c -m64 -pipe -std=c++11 -O2 -Wall -W -D_REENTRANT -DHGID=\"\" -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4 -I. -I/usr/X11R6/include -I. -I. -o recentfiles.o recentfiles.cpp
+In file included from recentfiles.cpp:15:
+recentfiles.h:18:10: fatal error: QtWidgets: No such file or directory
+ #include <QtWidgets>
+          ^~~~~~~~~~~
+compilation terminated.
+make[2]: *** [Makefile:470: recentfiles.o] Error 1
+make[2]: Leaving directory '/home/jsbien/djview4shapes/src'
+make[1]: *** [debian/rules:8: override_dh_auto_build] Error 2
+make[1]: Leaving directory '/home/jsbien/djview4shapes'
+make: *** [debian/rules:27: build] Error 2
+dpkg-buildpackage: error: debian/rules build subprocess returned exit status 2
+jsbien@debian2:~/djview4shapes$ 
