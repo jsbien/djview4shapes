@@ -78,7 +78,7 @@
 // #   define DJVUAPI __declspec(dllimport)
 // #  endif
 // # endif
-#endif
+// #endif
 #ifndef DJVUAPI
 # define DJVUAPI
 #endif
