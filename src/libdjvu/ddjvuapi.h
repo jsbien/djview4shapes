@@ -68,15 +68,15 @@ extern "C" {
 #include <stdlib.h>
 #include <stdio.h>
 
-#ifndef DDJVUAPI
-# ifdef _WIN32
-#  ifdef DDJVUAPI_EXPORT
-#   define DDJVUAPI __declspec(dllexport)
-#  else
-#   define DDJVUAPI __declspec(dllimport)
-#  endif
-# endif
-#endif
+/* #ifndef DDJVUAPI */
+/* # ifdef _WIN32 */
+/* #  ifdef DDJVUAPI_EXPORT */
+/* #   define DDJVUAPI __declspec(dllexport) */
+/* #  else */
+/* #   define DDJVUAPI __declspec(dllimport) */
+/* #  endif */
+/* # endif */
+/* #endif */
 #ifndef DDJVUAPI
 # define DDJVUAPI /**/
 #endif
