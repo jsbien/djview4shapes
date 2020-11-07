@@ -17,7 +17,8 @@ Education's grant no. N N519 38403 (cf.
 https://github.com/jsbien/ndt/wiki).
 
 In 2020 a small but important contribution has been made by Alexander
-Trufanov.
+Trufanov. Additionally he provided the essential help to crosscompile
+the program for Windows.
 
 The current home of the program is this repository and new issues
 should be reported here. There original site https://bitbucket.org/mrudolf/djview-poliqarp is kept because of the open issues, but is no longer maintained.
