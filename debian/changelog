@@ -1,8 +1,15 @@
+djview4shapes (0.63) experimental; urgency=medium
+
+  * Static libraries thanks to Alexander Trufanov, primary for Windows
+    crosscompilation
+
+ -- Janusz S. Bień <jsbien@mimuw.edu.pl>  Mon, 09 Nov 2020 08:55:13 +0100
+
 djview4shapes (0.62) experimental; urgency=medium
 
   * Problems fixed by Alexander Trufanov.
 
- -- Janusz S. Bień <jsbien@mimuw.edu.pl>  Sun, 11 Oct 2020 18:44:08 +0200
+ -- Janusz S. Bień <jsbien@debian2.dom>  Mon, 09 Nov 2020 08:49:58 +0100
 
 djview4shapes (0.61) experimental; urgency=low
 
