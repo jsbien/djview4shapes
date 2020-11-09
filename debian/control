@@ -6,11 +6,11 @@ Maintainer: NDT project
 Build-Depends: debhelper (>= 8),
     libdjvulibre-dev (>= 3.5.20),
     x11proto-core-dev, libx11-dev, libxext-dev,
-    libqt4-dev (>= 4.2)
+    qt5-default
 #Vcs-Git: git://git.debian.org/git/collab-maint/djview4.git
 #Vcs-Browser: http://git.debian.org/?p=collab-maint/djview4.git
 #Homepage: http://djvu.sourceforge.net/
-Homepage: https://bitbucket.org/jsbien/ndt
+Homepage: https://github.com/jsbien/ndt
 Standards-Version: 3.9.1
 
 Package: djview4shapes
