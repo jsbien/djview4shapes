@@ -18,8 +18,7 @@ Generally, to cross-compile this application, you need:
 
 Creating and using cross-compile toolchain manually is not simple
 though. Some distributions try to make it easier (like Gentoo's
-[crossdev](https://wiki.gentoo.org/wiki/Cross_build_environment)) (as
-of today the list is missing python-mako), but in most cases it still
+[crossdev](https://wiki.gentoo.org/wiki/Cross_build_environment)), but in most cases it still
 requires some manual configuration. In this project we use
 [MXE](http://mxe.cc/), a Makefile for creating such toolchains,
 configured and maintained by the community. A simple script is added
@@ -28,7 +27,8 @@ to automate all the steps into a single command.
 ## 2. Requirements
 
  * Basic Linux programs and build tools -- see specific
-   [MXE requirements](http://mxe.cc/#requirements). You normally don't need
+   [MXE requirements](http://mxe.cc/#requirements) (as
+of today the list is missing python-mako). You normally don't need
    to download MXE nor build its toolchains, it will be done automatically
    by the included script -- it just requires MXE requirements to be satisfied.
  * About 1.4GB disk space for the toolchain and libs

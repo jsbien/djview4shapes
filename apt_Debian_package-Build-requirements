@@ -1,0 +1,1 @@
+apt install debhelper  libdjvulibre-dev  x11proto-core-dev libx11-dev libxext-dev qt5-default
