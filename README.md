@@ -23,4 +23,12 @@ the program for Windows.
 The current home of the program is this repository and new issues
 should be reported here. There original site https://bitbucket.org/mrudolf/djview-poliqarp is kept because of the open issues, but is no longer maintained.
 
+To compile for Debian GNU/Linux install the build dependencies listed in debian/control, then run
+
+`dpkg-buildpackage -uc -us -b -rfakeroot`
+
+or an equivalent command.
+
+To compile for Windows cf. [Artur Kozak's note](Windows-cross-compile.md).
+
 ![djview4shapes: a screenshot](screenshots/djview4shapes_Zaborowski.png?raw=true "Index of abbreviations")
