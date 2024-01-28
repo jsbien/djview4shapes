@@ -2,6 +2,7 @@
 
 Originally prepared by Artur Kozak for djview4poliqarp (https://bitbucket.org/mrudolf/djview-poliqarp).
 
+Update: first have a look at https://github.com/jsbien/djview4shapes/issues/4.
 
 ## 1. Rationale
 
