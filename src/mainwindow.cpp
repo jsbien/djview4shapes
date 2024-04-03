@@ -135,10 +135,15 @@ void MainWindow::exportPixmaps()
 	int extension = saveFile.lastIndexOf('.');
 	if (extension != -1)
 		saveFile = saveFile.left(extension);
+
 	saveFile.append("-%1.png");
 
 	ShapeList items = ui.shapeWidget->selectedOccurences();
+	qDebug() << "exportPixmaps items:" << items;
+
 	for (int i = 0; i < items.count(); i++)
+	  qDebug() << "exportPixmaps items.at:" << saveFile.arg(i+1)
+	  qDebug() << "exportPixmaps items.at:" << items.at(i);
 		items.at(i)->pixmap().save(saveFile.arg(i+1));
 }
 
@@ -163,6 +168,7 @@ void MainWindow::launchDjview(const Blit &blit)
 	QString cmd = QSettings().value("Tools/djviewPath", "djview").toString();
 	QStringList args;
 	args.append(QString("file://") + m_filename + blit.link());
+	qDebug() << "URL:" << args;
 	if (!QProcess::startDetached(cmd, args)) {
 		QString msg = tr("Cannot execute program:") + "<br><i>%1</i>";
 		MessageDialog::warning(msg.arg(cmd));
