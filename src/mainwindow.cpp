@@ -135,15 +135,10 @@ void MainWindow::exportPixmaps()
 	int extension = saveFile.lastIndexOf('.');
 	if (extension != -1)
 		saveFile = saveFile.left(extension);
-
 	saveFile.append("-%1.png");
 
 	ShapeList items = ui.shapeWidget->selectedOccurences();
-	qDebug() << "exportPixmaps items:" << items;
-
 	for (int i = 0; i < items.count(); i++)
-	  qDebug() << "exportPixmaps items.at:" << saveFile.arg(i+1)
-	  qDebug() << "exportPixmaps items.at:" << items.at(i);
 		items.at(i)->pixmap().save(saveFile.arg(i+1));
 }
 
