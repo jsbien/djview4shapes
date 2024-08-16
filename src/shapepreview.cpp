@@ -34,6 +34,9 @@ void ShapePreview::configure()
 	QSettings settings;
 	int height = settings.value("Display/previewHeight", 40).toInt();
 	setMaximumHeight(height);
+	
+       // Force an update to ensure content is visible immediately
+       update();  // or repaint();
 }
 
 void ShapePreview::focusInEvent(QFocusEvent* event)
