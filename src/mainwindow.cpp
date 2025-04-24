@@ -128,6 +128,8 @@ void MainWindow::progress(int percentage)
 
 void MainWindow::exportPixmaps()
 {
+      qDebug("JSB exportPixmap start");
+      // https://doc.qt.io/qt-6/qstring.html#details //
 	QString saveFile = MessageDialog::saveFile(tr("Images (*.png)"), tr("Base image name"), "export");
 	if (saveFile.isEmpty())
 		return;
@@ -138,8 +140,12 @@ void MainWindow::exportPixmaps()
 	saveFile.append("-%1.png");
 
 	ShapeList items = ui.shapeWidget->selectedOccurences();
-	for (int i = 0; i < items.count(); i++)
-		items.at(i)->pixmap().save(saveFile.arg(i+1));
+	for (int i = 0; i < items.count(); i++){
+	  items.at(i)->pixmap().save(saveFile.arg(i+1));
+			qDebug("JSB shape %d exported",i);
+			qDebug() << saveFile.arg(i+1);
+	}
+    qDebug("JSB exportPixmap end");
 }
 
 void MainWindow::configure()

@@ -80,25 +80,27 @@ void ShapePreviewList::configure()
 
 void ShapePreviewList::addItem(ShapeNode* node, const Blit &blit)
 {
-	int row = m_items.count();
+    int row = m_items.count();
 
-	ShapeItem item;
-	item.label = new QLabel(QString(" %1 ")
-									.arg(row+1), widget());
-	item.label->installEventFilter(this);
-	item.djvu = new ShapePreview(widget());
-	item.djvu->setDocument(m_document);
-	item.djvu->setData(m_items.count());
-	connect(item.djvu, SIGNAL(activated()), this, SLOT(updateCurrentItem()));
-	connect(item.djvu, SIGNAL(blitRequested(Blit)), this, SIGNAL(blitRequested(Blit)));
-	connect(item.djvu, SIGNAL(documentRequested(Blit)), this,
-			  SIGNAL(documentRequested(Blit)));
-	item.djvu->setBlit(node, blit);
+    ShapeItem item;
+    item.label = new QLabel(QString(" %1 ").arg(row + 1), widget());
+    item.label->installEventFilter(this);
+    item.djvu = new ShapePreview(widget());
+    item.djvu->setDocument(m_document);
+    item.djvu->setData(m_items.count());
+    connect(item.djvu, SIGNAL(activated()), this, SLOT(updateCurrentItem()));
+    connect(item.djvu, SIGNAL(blitRequested(Blit)), this, SIGNAL(blitRequested(Blit)));
+    connect(item.djvu, SIGNAL(documentRequested(Blit)), this, SIGNAL(documentRequested(Blit)));
+    item.djvu->setBlit(node, blit);
 
-	m_layout->addWidget(item.label, row, 0);
-	m_layout->addWidget(item.djvu, row, 1);
-	m_items.append(item);
-	adjustSize();
+    m_layout->addWidget(item.label, row, 0);
+    m_layout->addWidget(item.djvu, row, 1);
+    m_items.append(item);
+
+    // Ensure the preview list updates to show the new item immediately
+    item.djvu->update();
+    this->update();  // or repaint();
+    adjustSize();
 }
 
 
