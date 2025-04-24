@@ -5,7 +5,7 @@ Besides the debug output, e.g.
 Running djview with: djview "file:///home/jsbien/git/tmp/downloads/Augezdecki.djvu?djvuopts=&page=41&highlight=597,1352,10,25"
 
 a line should be appended to the semicolon separated spreadsheet named
-<basename> (created if not exists) in the following format
+<basename>.csv (created if not exists) in the following format
 
 1. size and dimensions of the highlighted area
 2. the argument of djview
