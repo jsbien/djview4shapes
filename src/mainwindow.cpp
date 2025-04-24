@@ -22,6 +22,7 @@
 #include "preferencesdialog.h"
 #include <QTextCodec>
 
+
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent), m_helpDialog(0)
 {
@@ -192,9 +193,10 @@ for (const QString &arg : args) {
 		// out.setCodec("UTF-8");	
 		//	out.setEncoding(QStringConverter::Utf8);
 		out.setCodec(QTextCodec::codecForName("UTF-8"));
+		QString marker = QString::fromUtf8("\xE2\x80\xBB");
                 QString timestamp = QDateTime::currentDateTime().toString(Qt::ISODate);
                 out << area << ":" << height << "x" << width << ";"
-                    << arg << ";" << timestamp << ";※" << "\n";
+                    << arg << ";" << timestamp << ";" << marker  << "\n";
             } else {
                 qWarning() << "Failed to open index file:" << indexFile;
             }
