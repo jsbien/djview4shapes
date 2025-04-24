@@ -20,6 +20,7 @@
 #include "qdjvunet.h"
 #include "version.h"
 #include "preferencesdialog.h"
+#include <QTextCodec>
 
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent), m_helpDialog(0)
@@ -187,7 +188,10 @@ for (const QString &arg : args) {
             QString indexFile = baseName + ".csv";
             QFile file(indexFile);
             if (file.open(QIODevice::Append | QIODevice::Text)) {
-                QTextStream out(&file);
+	        QTextStream out(&file);
+		// out.setCodec("UTF-8");	
+		//	out.setEncoding(QStringConverter::Utf8);
+		out.setCodec(QTextCodec::codecForName("UTF-8"));
                 QString timestamp = QDateTime::currentDateTime().toString(Qt::ISODate);
                 out << area << ":" << height << "x" << width << ";"
                     << arg << ";" << timestamp << ";※" << "\n";
