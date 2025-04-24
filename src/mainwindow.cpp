@@ -169,7 +169,7 @@ void MainWindow::launchDjview(const Blit &blit)
 	QString cmd = QSettings().value("Tools/djviewPath", "djview").toString();
 	QStringList args;
 	args.append(QString("file://") + m_filename + blit.link());
-	qDebug() << "URL:" << args;
+        qDebug() << "Running djview with:" << "djview" << args.join(" ");
 	if (!QProcess::startDetached(cmd, args)) {
 		QString msg = tr("Cannot execute program:") + "<br><i>%1</i>";
 		MessageDialog::warning(msg.arg(cmd));
