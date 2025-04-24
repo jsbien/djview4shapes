@@ -170,6 +170,34 @@ void MainWindow::launchDjview(const Blit &blit)
 	QStringList args;
 	args.append(QString("file://") + m_filename + blit.link());
         qDebug() << "Running djview with:" << "djview" << args.join(" ");
+for (const QString &arg : args) {
+    if (arg.startsWith("file://")) {
+        QUrl url(arg);
+        QString baseName = QFileInfo(url.path()).completeBaseName();
+
+        QRegularExpression highlightRegex(R"(highlight=(\d+),(\d+),(\d+),(\d+))");
+        QRegularExpressionMatch match = highlightRegex.match(arg);
+        if (match.hasMatch()) {
+            int x = match.captured(1).toInt();
+            int y = match.captured(2).toInt();
+            int width = match.captured(3).toInt();
+            int height = match.captured(4).toInt();
+            int area = width * height;
+
+            QString indexFile = baseName + ".csv";
+            QFile file(indexFile);
+            if (file.open(QIODevice::Append | QIODevice::Text)) {
+                QTextStream out(&file);
+                QString timestamp = QDateTime::currentDateTime().toString(Qt::ISODate);
+                out << area << ":" << height << "x" << width << ";"
+                    << arg << ";" << timestamp << ";※" << "\n";
+            } else {
+                qWarning() << "Failed to open index file:" << indexFile;
+            }
+        }
+        break;
+    }
+}
 	if (!QProcess::startDetached(cmd, args)) {
 		QString msg = tr("Cannot execute program:") + "<br><i>%1</i>";
 		MessageDialog::warning(msg.arg(cmd));
